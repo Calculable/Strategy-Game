@@ -8,7 +8,7 @@ Dockerized React-Frontend for the Groupproject in "Distributed Systems" @ Fachho
 
 ```
 cd game-frontend/
-docker build -t ps-container:dev .
+docker build -t game-frontend:dev .
 ```
 
 ## Run Docker Container
@@ -19,7 +19,7 @@ docker run -it --rm \
 -v /app/node_modules \
 -p 3001:3000 \
 -e CHOKIDAR_USEPOLLING=true \
-ps-container:dev
+game-frontend:dev
 ```
 
 => Open [http://localhost:3001](http://localhost:3001)
