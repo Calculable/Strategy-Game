@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.App-logo {
+  width: 100pt;
+  height: 100pt;
+  margin-top: 100pt;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
