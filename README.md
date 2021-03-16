@@ -15,6 +15,7 @@ docker-compose up --build
 - Postgres listens to default port 5432. 
 - Port is exposed.
 - Postgres will create the volume ./pg_data:/data/postgres to backup the database.
+- should be reachable on postgres://postgres:postgres@postgres/database
 
 ### Trafic
 Traefic is running as a reversed proxy and is listens to all traffic on port 80 (http).
