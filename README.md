@@ -17,6 +17,10 @@ docker-compose up --build
 - Postgres will create the volume ./pg_data:/data/postgres to backup the database.
 - should be reachable on postgres://postgres:postgres@postgres/database
 
+### Django
+- Listening to port 8000
+- Port 8000 is exposed
+
 ### Trafik
 Traefik is running as a reversed proxy and is listens to all traffic on port 80 (http).
 - Dashboard visible under [http://localhost:8080](http://localhost:8080)
