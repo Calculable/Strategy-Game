@@ -4,6 +4,7 @@ Dockercompose can be started with the following command. This command runs and b
 ```
 docker-compose up --build
 ```
+![DS1-Topology.png](DS1-Topology.png)
 
 ### React
 - React listens to port 3000. 
@@ -18,8 +19,8 @@ docker-compose up --build
 - should be reachable on postgres://postgres:postgres@postgres/database
 
 ### Django
-- Listening to port 8000
-- Port 8000 is exposed
+- Listening to port 80
+- Port 80 is exposed
 
 ### Trafik
 Traefik is running as a reversed proxy and is listens to all traffic on port 80 (http).
