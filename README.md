@@ -15,11 +15,12 @@ docker-compose up --build
 - Postgres listens to default port 5432. 
 - Port is exposed.
 - Postgres will create the volume ./pg_data:/data/postgres to backup the database.
+- should be reachable on postgres://postgres:postgres@postgres/database
 
-### Trafic
-Traefic is running as a reversed proxy and is listens to all traffic on port 80 (http).
+### Trafik
+Traefik is running as a reversed proxy and is listens to all traffic on port 80 (http).
 - Dashboard visible under [http://localhost:8080](http://localhost:8080)
-- through traefic the react container can be accessed on [http://frontend.localhost](http://frontend.localhost)
+- through traefik the react container can be accessed on [http://frontend.localhost](http://frontend.localhost)
 ## Stop docker-compose
 ```
 docker-compose stop
