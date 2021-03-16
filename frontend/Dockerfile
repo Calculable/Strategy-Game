@@ -1,21 +1,17 @@
-# pull the base image
-FROM node:alpine
+FROM node:15.11.0
 
-# set the working direction
+RUN mkdir /app
+RUN groupadd -r front
+RUN useradd -r -s /bin/false -g front front
+
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
-COPY package.json ./
-
-COPY package-lock.json ./
-
+COPY package.json .
 RUN npm install
+COPY . .
 
-# add app
-COPY . ./
+RUN chown -R front:front /app
+USER front
 
-# start app
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
+
