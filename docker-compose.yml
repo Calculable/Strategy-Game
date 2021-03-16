@@ -13,6 +13,21 @@ services:
       - 5432:5432
     volumes:
       - ./pg_data:/data/postgres
+    networks:
+      - backend
+
+  api:
+    restart: always
+    build:
+      context: ./api
+    container_name: api
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - backend
 
   frontend:
     restart: always
@@ -29,6 +44,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`frontend.localhost`)"
       - "traefik.http.routers.frontend.entrypoints=web"
+    depends_on:
+      - api
+    networks:
+      - frontend
 
   traefik:
     restart: always
@@ -44,7 +63,15 @@ services:
       - 8080:8080
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - frontend
 
 volumes:
   pg-data:
+
+networks:
+  backend:
+    internal: false #ToDo: change to true later
+  frontend:
+    internal: false
 
