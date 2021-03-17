@@ -19,13 +19,12 @@ docker-compose up --build
 - should be reachable on postgres://postgres:postgres@postgres/database
 
 ### Django
-- Listening to port 80
-- Port 80 is exposed
+- Listening to port 80 for Docker container
+- Port 8090, 8091 are exposed
 
 ### Trafik
 Traefik is running as a reversed proxy and is listens to all traffic on port 80 (http).
-- Dashboard visible under [http://localhost:8080](http://localhost:8080)
-- through traefik the react container can be accessed on [http://frontend.localhost](http://frontend.localhost)
+- Dashboard visible under [http://localhost:80/dashboard/](http://localhost:80/dashboard/)
 ## Stop docker-compose
 ```
 docker-compose stop

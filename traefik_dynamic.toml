@@ -4,8 +4,6 @@ entrypoints = ["web"]
 service = "api@internal"
 #middlewares = ["auth"]
 
-#[http.middlewares.auth.basicAuth]
-#users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"]
 
 [http.routers.myservice]
 rule = "PathPrefix(`/`)"
