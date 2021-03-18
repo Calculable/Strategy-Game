@@ -14,7 +14,6 @@ services:
     volumes:
       - ./pg_data:/data/postgres
 
-
   service1:
     restart: always
     image: myservice
@@ -37,6 +36,14 @@ services:
     depends_on:
       - postgres
 
+  mygration:
+    image: myservice
+    command: python manage.py makemigrations && python manage.py migrate
+    depends_on:
+      - postgres
+      - service1
+      - service2
+
   frontend:
     restart: always
     build: 
@@ -48,7 +55,6 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - PATH=/app/node_modules/.bin:$PATH
-
 
   traefik:
     restart: always
