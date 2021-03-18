@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import main
+from .views import PlayerView
 
 urlpatterns = [
-    path('', main)
+    path('', PlayerView.as_view())
 ]
