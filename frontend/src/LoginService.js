@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function addLoginFormSubmitListener() {
+
     let loginForm = document.getElementById("login-form");
     let usernameInput = document.getElementById("username-input");
     let passwordInput = document.getElementById("password-input");
@@ -13,5 +14,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }).then(function (res) {alert(res);});
     });
 
-});// interactive
-
+}
