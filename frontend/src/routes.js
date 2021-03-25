@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
-
+import {Route} from 'react-router';
 /**
  * Import all page components here
  */
@@ -14,7 +13,7 @@ import MainPage from './components/SomeOtherPage';
  */
 export default (
     <Route path="/" component={App}>
-        <Route path="/" component={MainPage} />
-        <Route path="/login" component={LoginPage} />
+        <Route path="/" component={MainPage}/>
+        <Route path="/login" component={LoginPage}/>
     </Route>
 );

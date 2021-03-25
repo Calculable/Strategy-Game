@@ -1,25 +1,76 @@
 body {
-  background-color: tomato;
+    background-color: #1E2940;
+    color: white;
+}
+
+.modal {
+    color: black;
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
 }
 
 .board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
 }
 
 .board > img {
-  transition: 0s ease;
-  width: 100%;
+    transition: 0s ease;
+    width: 100%;
+    aspect-ratio: 1 / 1;
 }
 
 .board > img:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-  border: 1px solid white;
-  transition: 0.3s ease;
+    border: 1px solid white;
+    transition: 0.3s ease;
+}
+
+.resource-counter {
+    width: 100vw;
+    padding: 0.5em;
+    text-align: center;
+    background: #1E2940;
+}
+
+.building {
+    grid-column: 1/1;
+    grid-row: 1/1;
+    margin: 1em;
+    padding: 1em;
+    color: white;
+    background: #241FA6;
+}
+
+
+.building > .building-icon {
+    font-size: 10vw;
+    text-align: center;
+    color: white;
+}
+
+.building > button {
+    margin: 1em 0;
+    width: 100%;
+    background: #B21DF2;
+    border: none;
+}
+
+.building > .worker-display {
+    margin-top: 1em;
+    text-align: center;
+}
+
+
+@media screen and (min-width: 786px) {
+    .board {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .board {
+        grid-template-columns: repeat(7, 1fr);
+    }
 }
