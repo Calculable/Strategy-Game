@@ -13,6 +13,11 @@ services:
       - 5432:5432
     volumes:
       - ./pg_data:/data/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   service1:
     restart: always
@@ -24,7 +29,8 @@ services:
     ports:
       - 8090:80
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   service2:
     restart: always
@@ -34,7 +40,8 @@ services:
     ports:
       - 8091:80
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   mygration:
     image: myservice
