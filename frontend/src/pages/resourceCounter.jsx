@@ -8,7 +8,7 @@ class ResourceCounter extends React.Component {
                     , Iron: <span className="badge badge-info">34</span>
                     , Stone: <span className="badge badge-info">2</span>
                     , Gold <span className="badge badge-info">3</span>
-                    , Diamont: <span className="badge badge-info">0</span>
+                    , Diamond: <span className="badge badge-info">0</span>
                     <br/><br/>
                     Free Workers: <span className="badge badge-light">10</span>
                     <br/><br/>
