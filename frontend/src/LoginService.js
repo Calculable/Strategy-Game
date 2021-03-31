@@ -1,15 +1,17 @@
-export function submitLogin() {
+import { authService } from './services/auth-service.js'
 
-    let usernameInput = document.getElementById("username-input");
-    let passwordInput = document.getElementById("password-input");
+class LoginService {
 
-    fetch("/login", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({username: usernameInput.value, password: passwordInput.value}),
-        credentials: "include"
-    }).then(function (res) {
-        console.log("check response")
-    });
+    async submitLogin(userName, pwd) {
 
+        let usernameInput = document.getElementById("username-input");
+        let passwordInput = document.getElementById("password-input");
+
+        //await authService.login(usernameInput.value, passwordInput.value); //comment in when /login Endpoint exists
+        //return authService.isLoggedIn();
+
+        return true;
+    }
 }
+
+export const loginService = new LoginService();

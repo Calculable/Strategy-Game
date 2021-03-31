@@ -1,6 +1,6 @@
 /*index.jsx*/
 import React from "react";
-import {submitLogin} from '../LoginService.js';
+import {loginService} from '../LoginService.js';
 import Layout from "./layout";
 import LoginForm from "./loginForm";
 import ResourceCounter from "./resourceCounter";
@@ -11,30 +11,37 @@ class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: false,
+            showGameboard: false,
         };
         this.loginHandler = this.loginHandler.bind(this);
     }
 
     loginHandler(e) {
         e.preventDefault();
-        submitLogin();
-        this.setState({
-            isLoggedIn: true
-        })
+        loginService.submitLogin().then((loginSuccessful) => {
+            if (loginSuccessful) {
+                this.setState({
+                    showGameboard: true
+                })
+            } else {
+                alert("Login nicht erfolgreich");
+            }
+        });
+
+
     }
 
     render() {
         return (
             <div className="App">
                 <Layout>
-                    {this.state.isLoggedIn &&
+                    {this.state.showGameboard &&
                     <div>
                         <ResourceCounter></ResourceCounter>
                         <Gameboard></Gameboard>
                     </div>
                     }
-                    {!this.state.isLoggedIn &&
+                    {!this.state.showGameboard &&
                     <div>
                         <h1>Hey there! Welcome to Strategy Game</h1>
                         <LoginForm loginHandler={this.loginHandler}></LoginForm>
