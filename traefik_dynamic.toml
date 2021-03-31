@@ -1,5 +1,5 @@
 [http.routers.dashboard]
-rule = "PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+rule = "PathPrefix(`/api2`) || PathPrefix(`/dashboard`)"
 entrypoints = ["web"]
 service = "api@internal"
 #middlewares = ["auth"]

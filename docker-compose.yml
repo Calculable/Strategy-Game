@@ -68,6 +68,7 @@ services:
     depends_on:
       - service1
       - service2
+      - frontend
 
 volumes:
   pg-data:
@@ -77,4 +78,3 @@ networks:
     internal: false #ToDo: change to true later
   frontend:
     internal: false
-
