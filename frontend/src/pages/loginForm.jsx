@@ -8,7 +8,7 @@ class LoginForm extends React.Component {
                       onSubmit={this.props.loginHandler}>
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <label htmlFor="username-input" className="sr-only">Email address</label>
-                    <input type="text" id="username-input" className="form-control" defaultValue="Demoplayer" required
+                    <input type="text" id="username-input" className="form-control" defaultValue="demo_user" required
                            autoFocus/>
                     <label htmlFor="password-input" className="sr-only">Password</label>
                     <input type="password" id="password-input" className="form-control mt-1" defaultValue="1234"

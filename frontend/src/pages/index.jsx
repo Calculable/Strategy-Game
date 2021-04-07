@@ -33,7 +33,7 @@ class MainPage extends React.Component {
                     showGameboard: true
                 })
             } else {
-                alert("Login nicht erfolgreich");
+                //alert("Login nicht erfolgreich");
             }
         });
 

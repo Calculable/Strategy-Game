@@ -2,9 +2,18 @@ import {httpService} from './http-service.js'
 
 class AuthService {
     async login(userName, pwd) {
-        const token = await httpService.ajax("POST", "/login/", {email: userName, pwd: pwd});
-        httpService.setAuthToken(token);
-        return token;
+        const result = await httpService.ajax("POST", "http://localhost/token-auth/", {username: userName, password: pwd});
+        
+        if (result.token) {
+            alert("Loged in with token: " + result.token);
+            httpService.setAuthToken(result.token);
+            return result.token;
+        } else {
+            alert("Login failed");
+            httpService.setAuthToken(); //dont login
+            return null;
+        }
+        
     }
 
     logout() {

@@ -9,7 +9,7 @@ class HttpService {
         const fetchHeaders = new Headers({'content-type': 'application/json', ...(headers || {})});
 
         if (valueStorage.getItem(tokenKey)) {
-            fetchHeaders.append("authorization", "Bearer " + valueStorage.getItem(tokenKey))
+            fetchHeaders.append("authorization", "JWT " + valueStorage.getItem(tokenKey))
         }
 
         return fetch(url, {

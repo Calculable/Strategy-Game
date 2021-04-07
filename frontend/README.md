@@ -36,3 +36,8 @@ game-frontend:dev
 
 `npm test`
 
+## Create New User for Login
+
+URL: localhost/api/users/
+METHOD: POST
+BODY: {username: ..., password: ...}
