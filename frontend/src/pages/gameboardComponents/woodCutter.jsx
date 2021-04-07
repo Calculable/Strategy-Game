@@ -12,13 +12,22 @@ class WoodCutter extends React.Component {
                     className="woodcutter"
                     displayName={"Wood Cutter"}
                     icon={"bi bi-hexagon"}
-                    progress={20}
+                    progress={this.props.stats ? this.props.stats.progress : 0}
                     buttonText={"edit"}
-                    workers={"1"}
-                    level={"1"}
+                    buttonDisabled={false}
+                    workers={this.props.stats ? this.props.stats.worker : 0}
+                    level={this.props.stats ? this.props.stats.level : 0}
+                    levelUpCondition={this.props.stats ? this.props.stats.level : 0}
+                    performance={this.props.stats ? this.props.stats.level : 0}
                     modalTarget={"#" + WOOD_CUTTER_MODAL}>
                 </Workplace>
-                <WoodCutterDialog></WoodCutterDialog>
+                <WoodCutterDialog
+                    stats={this.props.stats ? this.props.stats : {}}
+                    assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
+                    }}
+                    levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
+                    }}>
+                </WoodCutterDialog>
             </div>
         );
     }
@@ -28,7 +37,21 @@ class WoodCutterDialog extends React.Component {
     render() {
         return (
             <WorkplaceModalDialog id={WOOD_CUTTER_MODAL}
-                                  title="I'm the wood-cutter modal dialog"></WorkplaceModalDialog>
+                                  title="Edit wood-cutter"
+                                  levelUpCondition={this.props.stats ? this.props.stats.levelUpCondition : {}}
+                                  performance={this.props.stats ? this.props.stats.performance : {}}
+                                  level={this.props.stats ? this.props.stats.level : 0}
+                                  workers={this.props.stats ? this.props.stats.worker : 0}
+                                  assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
+                                  }}
+                                  levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
+                                  }}
+                                  shortName={"woodcutter"}
+
+
+            >
+
+            </WorkplaceModalDialog>
         );
     }
 }

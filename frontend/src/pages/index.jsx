@@ -1,6 +1,9 @@
 /*index.jsx*/
 import React from "react";
-import {loginService} from '../LoginService.js';
+import {loginService} from '../services/login-service.js';
+import {apiService} from '../services/api-service.js';
+import {UiController} from '../services/ui-controller.js';
+
 import Layout from "./layout";
 import LoginForm from "./loginForm";
 import ResourceCounter from "./resourceCounter";
@@ -12,8 +15,14 @@ class MainPage extends React.Component {
         super(props);
         this.state = {
             showGameboard: false,
+            resourceStats: apiService.getRessourceStats(),
+            workplaceStats: apiService.getWorkplaceStats()
         };
         this.loginHandler = this.loginHandler.bind(this);
+
+        this.uiController = new UiController(this);
+        this.uiController.pollInformation(this);
+
     }
 
     loginHandler(e) {
@@ -37,8 +46,10 @@ class MainPage extends React.Component {
                 <Layout>
                     {this.state.showGameboard &&
                     <div>
-                        <ResourceCounter></ResourceCounter>
-                        <Gameboard></Gameboard>
+                        <ResourceCounter resourceStats={this.state.resourceStats}></ResourceCounter>
+                        <Gameboard workplaceStats={this.state.workplaceStats}
+                                   assignWorkerHandler={this.uiController.assignWorkerHandler.bind(this.uiController)}
+                                   levelUpHandler={this.uiController.levelUpHandler.bind(this.uiController)}></Gameboard>
                     </div>
                     }
                     {!this.state.showGameboard &&

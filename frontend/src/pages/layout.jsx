@@ -25,9 +25,7 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto">
 
-                            <li className="nav-item">
-                                <a className="nav-link" href="https://www.google.ch">Manual</a>
-                            </li>
+
                             <li className="nav-item">
                                 <a className="nav-link" href="/about">About</a>
                             </li>

@@ -12,13 +12,23 @@ class FishermansSquare extends React.Component {
                     className="woodcutter"
                     displayName={"Fisher Square"}
                     icon={"bi bi-water"}
-                    progress={10}
+                    progress={this.props.stats ? this.props.stats.progress : 0}
                     buttonText={"edit"}
-                    workers={"1"}
-                    level={"4"}
+                    buttonDisabled={false}
+                    workers={this.props.stats ? this.props.stats.worker : 0}
+                    level={this.props.stats ? this.props.stats.level : 0}
+                    levelUpCondition={this.props.stats ? this.props.stats.level : 0}
+                    performance={this.props.stats ? this.props.stats.level : 0}
                     modalTarget={"#" + FISHERMANS_SQUARE_MODAL}>
                 </Workplace>
-                <FishermansSquareDialog></FishermansSquareDialog>
+                <FishermansSquareDialog
+                    stats={this.props.stats ? this.props.stats : {}}
+                    assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
+                    }}
+                    levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
+                    }}
+                >
+                </FishermansSquareDialog>
             </div>
         );
     }
@@ -28,7 +38,20 @@ class FishermansSquareDialog extends React.Component {
     render() {
         return (
             <WorkplaceModalDialog id={FISHERMANS_SQUARE_MODAL}
-                                  title="I'm the fisherman's square modal dialog"></WorkplaceModalDialog>
+                                  title="Edit fishermans square"
+                                  levelUpCondition={this.props.stats ? this.props.stats.levelUpCondition : {}}
+                                  performance={this.props.stats ? this.props.stats.performance : {}}
+                                  level={this.props.stats ? this.props.stats.level : 0}
+                                  workers={this.props.stats ? this.props.stats.worker : 0}
+                                  assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
+                                  }}
+                                  levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
+                                  }}
+                                  shortName={"fishersquare"}
+
+            >
+
+            </WorkplaceModalDialog>
         );
     }
 }

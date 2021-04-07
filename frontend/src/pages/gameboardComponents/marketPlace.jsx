@@ -13,9 +13,11 @@ class MarketPlace extends React.Component {
                     displayName={"Market"}
                     icon={"bi bi-shop"}
                     buttonText={"trade"}
+                    buttonDisabled={true}
                     modalTarget={"#" + MARKET_MODAL}>
                 </Workplace>
-                <MarketDialog></MarketDialog>
+                <MarketDialog>
+                </MarketDialog>
             </div>
         );
     }
@@ -25,7 +27,10 @@ class MarketPlace extends React.Component {
 class MarketDialog extends React.Component {
     render() {
         return (
-            <WorkplaceModalDialog id={MARKET_MODAL} title="I'm the market modal dialog"></WorkplaceModalDialog>
+            <WorkplaceModalDialog
+                id={MARKET_MODAL}
+                title="I'm the market modal dialog"
+            ></WorkplaceModalDialog>
         );
     }
 }
