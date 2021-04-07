@@ -12,13 +12,23 @@ class Cornfield extends React.Component {
                     className="woodcutter"
                     displayName={"Cornfield"}
                     icon={"bi bi-pause"}
-                    progress={80}
+                    progress={this.props.stats ? this.props.stats.progress : 0}
                     buttonText={"edit"}
-                    workers={"14"}
-                    level={"3"}
+                    buttonDisabled={false}
+                    workers={this.props.stats ? this.props.stats.worker : 0}
+                    level={this.props.stats ? this.props.stats.level : 0}
+                    levelUpCondition={this.props.stats ? this.props.stats.level : 0}
+                    performance={this.props.stats ? this.props.stats.level : 0}
                     modalTarget={"#" + CORNFIELD_MODAL}>
                 </Workplace>
-                <CornfieldDialog></CornfieldDialog>
+                <CornfieldDialog
+                    stats={this.props.stats ? this.props.stats : {}}
+                    assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
+                    }}
+                    levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
+                    }}
+                >
+                </CornfieldDialog>
             </div>
         );
     }
@@ -27,7 +37,21 @@ class Cornfield extends React.Component {
 class CornfieldDialog extends React.Component {
     render() {
         return (
-            <WorkplaceModalDialog id={CORNFIELD_MODAL} title="I'm the cornfield modal dialog"></WorkplaceModalDialog>
+            <WorkplaceModalDialog
+                id={CORNFIELD_MODAL}
+                title="Edit cornfield"
+                levelUpCondition={this.props.stats ? this.props.stats.levelUpCondition : {}}
+                performance={this.props.stats ? this.props.stats.performance : {}}
+                level={this.props.stats ? this.props.stats.level : 0}
+                workers={this.props.stats ? this.props.stats.worker : 0}
+                assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
+                }}
+                levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
+                }}
+                shortName={"cornfield"}
+
+            >
+            </WorkplaceModalDialog>
         );
     }
 }

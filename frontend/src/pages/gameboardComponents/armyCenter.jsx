@@ -13,6 +13,7 @@ class ArmyCenter extends React.Component {
                     displayName={"Army Center"}
                     icon={"bi bi-shield"}
                     buttonText={"manage army"}
+                    buttonDisabled={true}
                     modalTarget={"#" + ARMY_CENTER_MODAL}>
                 </Workplace>
                 <ArmyCenterDialog></ArmyCenterDialog>

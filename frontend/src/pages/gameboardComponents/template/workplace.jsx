@@ -11,10 +11,12 @@ class Workplace extends React.Component {
                     }
                 </h1>
 
+                {!this.props.buttonDisabled &&
                 <button type="button" className="btn btn-secondary" data-toggle="modal"
                         data-target={this.props.modalTarget}>
                     {this.props.buttonText}
                 </button>
+                }
 
                 {this.props.progress &&
                 <div className="progress">

@@ -1,5 +1,3 @@
-import { authService } from './services/auth-service.js'
-
 class LoginService {
 
     async submitLogin(userName, pwd) {
