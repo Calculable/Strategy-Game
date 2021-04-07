@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from api import views
 from django.conf.urls import url
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api', include('api.urls')),
-    re_path(r'^api/players/$', views.players_list),
+    #path('admin/', admin.site.urls),
+    path('token-auth/', obtain_jwt_token),
+    path('api/', include('api.urls')),
+    #re_path(r'^api/players/$', views.players_list),
+    #path('token-auth/', obtain_jwt_token),
 ]
