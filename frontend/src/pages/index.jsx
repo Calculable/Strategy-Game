@@ -48,6 +48,7 @@ class MainPage extends React.Component {
                     <div>
                         <ResourceCounter resourceStats={this.state.resourceStats}></ResourceCounter>
                         <Gameboard workplaceStats={this.state.workplaceStats}
+                                   resourceStats={this.state.resourceStats}
                                    assignWorkerHandler={this.uiController.assignWorkerHandler.bind(this.uiController)}
                                    levelUpHandler={this.uiController.levelUpHandler.bind(this.uiController)}></Gameboard>
                     </div>

@@ -34,11 +34,15 @@ class WorkplaceModalDialog extends React.Component {
                                            onChange={this.handleAssignedWorkerChange.bind(this)}/>
                                 </label>
 
-                                {this.state.assignedWorkers >= 0 &&
+                                {(this.state.assignedWorkers <= (this.props.resourceStats.freeWorkers + this.props.workers)) &&
                                 <button type="button" className="btn btn-outline-secondary ml-1"
                                         onClick={this.assignWorkers.bind(this)}>Set</button>
                                 }
 
+                                {(this.state.assignedWorkers > (this.props.resourceStats.freeWorkers + this.props.workers)) &&
+                                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
+                                        disabled>Not enough workers</button>
+                                }
 
                             </div>
 
@@ -46,9 +50,26 @@ class WorkplaceModalDialog extends React.Component {
                             <h6 className="mt-3">Level: <span
                                 className="badge badge-secondary">{this.props.level ? this.props.level : ""}</span></h6>
 
-                            <button type="button" className="btn btn-outline-secondary mt-1"
+
+                            {(this.props.levelUpCondition.wood <= this.props.resourceStats.materials.wood) &&
+                            (this.props.levelUpCondition.iron <= this.props.resourceStats.materials.iron) &&
+                            (this.props.levelUpCondition.stone <= this.props.resourceStats.materials.stone) &&
+                            (this.props.levelUpCondition.gold <= this.props.resourceStats.materials.gold) &&
+                            (this.props.levelUpCondition.diamond <= this.props.resourceStats.materials.diamond) &&
+                                <button type="button" className="btn btn-outline-secondary mt-1"
                                     onClick={this.levelUp.bind(this)}>Upgrade to
                                 Level {this.props.level ? this.props.level + 1 : ""}</button>
+                            }
+
+                            {((this.props.levelUpCondition.wood > this.props.resourceStats.materials.wood) ||
+                            (this.props.levelUpCondition.iron > this.props.resourceStats.materials.iron) ||
+                            (this.props.levelUpCondition.stone > this.props.resourceStats.materials.stone) ||
+                            (this.props.levelUpCondition.gold > this.props.resourceStats.materials.gold) ||
+                            (this.props.levelUpCondition.diamond > this.props.resourceStats.materials.diamond)) &&
+                                    <button type="button" className="btn btn-outline-secondary mt-1 btn-warning" disabled>Not enough resources to upgrade to Level {this.props.level ? this.props.level + 1 : ""}</button>
+                            }
+
+
                             <br/>
 
 

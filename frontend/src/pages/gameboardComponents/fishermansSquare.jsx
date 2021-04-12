@@ -1,6 +1,7 @@
 import React from 'react'
 import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
+import ResourceCounter from "../resourceCounter";
 
 let FISHERMANS_SQUARE_MODAL = "fishermansSquareModal";
 
@@ -27,6 +28,7 @@ class FishermansSquare extends React.Component {
                     }}
                     levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                     }}
+                    resourceStats={this.props.resourceStats}
                 >
                 </FishermansSquareDialog>
             </div>
@@ -48,6 +50,7 @@ class FishermansSquareDialog extends React.Component {
                                   levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                                   }}
                                   shortName={"fishersquare"}
+                                  resourceStats={this.props.resourceStats}
 
             >
 

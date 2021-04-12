@@ -1,6 +1,7 @@
 import React from 'react'
 import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
+import ResourceCounter from "../resourceCounter";
 
 let CORNFIELD_MODAL = "cornfieldModal";
 
@@ -27,6 +28,7 @@ class Cornfield extends React.Component {
                     }}
                     levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                     }}
+                    resourceStats={this.props.resourceStats}
                 >
                 </CornfieldDialog>
             </div>
@@ -49,6 +51,7 @@ class CornfieldDialog extends React.Component {
                 levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                 }}
                 shortName={"cornfield"}
+                resourceStats={this.props.resourceStats}
 
             >
             </WorkplaceModalDialog>

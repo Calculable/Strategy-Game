@@ -1,6 +1,7 @@
 import React from 'react'
 import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
+import ResourceCounter from "../resourceCounter";
 
 let STONE_MINE_MODAL = "stoneMineModal";
 
@@ -27,6 +28,8 @@ class StoneMine extends React.Component {
                     }}
                     levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                     }}
+                    resourceStats={this.props.resourceStats}
+
                 >
                 </StoneMineDialog>
             </div>
@@ -49,6 +52,7 @@ class StoneMineDialog extends React.Component {
                 levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                 }}
                 shortName={"stonemine"}
+                resourceStats={this.props.resourceStats}
 
             ></WorkplaceModalDialog>
         );

@@ -1,6 +1,7 @@
 import React from 'react'
 import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
+import ResourceCounter from "../resourceCounter";
 
 let WOOD_CUTTER_MODAL = "woodCutterModal";
 
@@ -26,7 +27,8 @@ class WoodCutter extends React.Component {
                     assignWorkerHandler={this.props.assignWorkerHandler ? this.props.assignWorkerHandler : () => {
                     }}
                     levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
-                    }}>
+                    }}
+                    resourceStats={this.props.resourceStats}>
                 </WoodCutterDialog>
             </div>
         );
@@ -47,6 +49,7 @@ class WoodCutterDialog extends React.Component {
                                   levelUpHandler={this.props.levelUpHandler ? this.props.levelUpHandler : () => {
                                   }}
                                   shortName={"woodcutter"}
+                                  resourceStats={this.props.resourceStats}
 
 
             >
