@@ -3,13 +3,7 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 #from .models import Player
 
-#class PlayerSerializer(serializers.ModelSerializer):
-#    class Meta:
-#        model = Player
-#        fields = ('id', 'name', 'passwordHash')
-
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ('username',)
