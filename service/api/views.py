@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-#from .models import Player
+from .models import Player
 #from .serializers import PlayerSerializer
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -8,7 +8,7 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken
+from .serializers import UserSerializer, UserSerializerWithToken, GameSerializer
 
 #class PlayerView(generics.ListAPIView):
 #    queryset = Player.objects.all()
@@ -40,6 +40,11 @@ def current_user(request):
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+def current_stuff(request):
+    serializer = GameSerializer(Player.objects.get(user=request.user))
+    return Response(serializer.data)
 
 class UserList(APIView):
     """
