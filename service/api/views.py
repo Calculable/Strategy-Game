@@ -42,7 +42,7 @@ def current_user(request):
 
 
 @api_view(['GET'])
-def current_stuff(request):
+def getBuildingInformation(request):
     serializer = GameSerializer(Player.objects.get(user=request.user))
     return Response(serializer.data)
 

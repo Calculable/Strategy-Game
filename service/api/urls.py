@@ -1,11 +1,11 @@
 from django.urls import path
 #from .views import PlayerView
-from .views import current_user, UserList, current_stuff
+from .views import current_user, UserList, getBuildingInformation
 
 urlpatterns = [
     #path('', PlayerView.as_view())
     path('current_user/', current_user),
-    path('current_stuff/', current_stuff),
+    path('buildingInformation/', getBuildingInformation),
     path('users/', UserList.as_view()),
     #path('buildings/', BuildingsList.asview())
 ]
