@@ -7,8 +7,10 @@ export class UiController {
     }
 
     updateUI() {
+
+        console.log(apiService.getWorkplaceStats());
         let fetchedResourceStats = apiService.getRessourceStats();
-        let fetchedWorkplaceStats = apiService.getWorkplaceStats();
+        let fetchedWorkplaceStats = apiService.getFakeWorkplaceStats();
 
         this.uiComponent.setState({
             resourceStats: fetchedResourceStats,

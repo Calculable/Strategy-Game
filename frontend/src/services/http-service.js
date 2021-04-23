@@ -3,6 +3,7 @@
 import {valueStorage} from './value-storage.js'
 
 const tokenKey = "token";
+const localhost = "http://localhost";
 
 class HttpService {
     ajax(method, url, data, headers) {
@@ -12,7 +13,7 @@ class HttpService {
             fetchHeaders.append("authorization", "JWT " + valueStorage.getItem(tokenKey))
         }
 
-        return fetch(url, {
+        return fetch(localhost + url, {
             method: method,
             headers: fetchHeaders, body: JSON.stringify(data)
         }).then(x => {

@@ -16,7 +16,7 @@ class MainPage extends React.Component {
         this.state = {
             showGameboard: false,
             resourceStats: apiService.getRessourceStats(),
-            workplaceStats: apiService.getWorkplaceStats()
+            workplaceStats: apiService.getFakeWorkplaceStats()
         };
         this.loginHandler = this.loginHandler.bind(this);
 

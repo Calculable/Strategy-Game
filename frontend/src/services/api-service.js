@@ -1,3 +1,5 @@
+import {httpService} from './http-service.js'
+
 //Contains Dummy-Methods to be replaced by API-Calls later
 class ApiService {
 
@@ -14,7 +16,11 @@ class ApiService {
         };
     }
 
-    getWorkplaceStats() {
+    async getWorkplaceStats() {
+        return await httpService.ajax("GET", "/api/buildingInformation/");
+    }
+
+    getFakeWorkplaceStats() {
         return {
             woodCutter: this.getRandomWorkplaceStats(),
             stoneMine: this.getRandomWorkplaceStats(),
@@ -23,6 +29,7 @@ class ApiService {
             cornfield: this.getRandomWorkplaceStats(),
         };
     }
+
 
     setWorkerForWorkplace(amountOfWorkers, workplace) {
         //...
