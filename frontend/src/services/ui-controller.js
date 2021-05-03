@@ -1,16 +1,19 @@
-import {apiService} from './api-service'
+import {ApiService, FakeApiService} from "./fake-api-service";
 
 export class UiController {
 
-    constructor(uiComponent) {
+    constructor(uiComponent, httpService) {
         this.uiComponent = uiComponent;
+
+        this.apiService = new FakeApiService(httpService);
+
     }
 
     updateUI() {
 
-        console.log(apiService.getWorkplaceStats());
-        let fetchedResourceStats = apiService.getRessourceStats();
-        let fetchedWorkplaceStats = apiService.getFakeWorkplaceStats();
+        console.log(this.apiService.getWorkplaceStats());
+        let fetchedResourceStats = this.apiService.getRessourceStats();
+        let fetchedWorkplaceStats = this.apiService.getWorkplaceStats();
 
         this.uiComponent.setState({
             resourceStats: fetchedResourceStats,
@@ -23,13 +26,13 @@ export class UiController {
     }
 
     levelUpHandler(workplace) {
-        apiService.levelUpWorkplace(workplace);
+        this.apiService.levelUpWorkplace(workplace);
         this.updateUI();
     }
 
     assignWorkerHandler(amountOfWorkers, workplace) {
         alert("Set " + workplace + " to " + amountOfWorkers + " workers");
-        apiService.setWorkerForWorkplace(amountOfWorkers, workplace);
+        this.apiService.setWorkerForWorkplace(amountOfWorkers, workplace);
         this.updateUI();
     }
 

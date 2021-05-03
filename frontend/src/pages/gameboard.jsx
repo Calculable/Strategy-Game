@@ -4,7 +4,6 @@ import StoneMine from "./gameboardComponents/stoneMine";
 import CoalMine from "./gameboardComponents/coalMine";
 import FishermansSquare from "./gameboardComponents/fishermansSquare";
 import Cornfield from "./gameboardComponents/cornfield";
-import ResourceCounter from "./resourceCounter";
 
 class Gameboard extends React.Component {
 

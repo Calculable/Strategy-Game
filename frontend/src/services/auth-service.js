@@ -1,28 +1,29 @@
-import {httpService} from './http-service.js'
+export class AuthService {
 
-class AuthService {
+    constructor(httpService) {
+        this.httpService = httpService;
+    }
+
     async login(userName, pwd) {
-        const result = await httpService.ajax("POST", "/token-auth/", {username: userName, password: pwd});
+        const result = await this.httpService.ajax("POST", "/token-auth/", {username: userName, password: pwd});
         
         if (result.token) {
             alert("Loged in with token: " + result.token);
-            httpService.setAuthToken(result.token);
+            this.httpService.setAuthToken(result.token);
             return result.token;
         } else {
             alert("Login failed");
-            httpService.setAuthToken(); //dont login
+            this.httpService.setAuthToken(); //dont login
             return null;
         }
         
     }
 
     logout() {
-        httpService.removeAuthToken();
+        this.httpService.removeAuthToken();
     }
 
     isLoggedIn() {
-        return httpService.hasAuthToken();
+        return this.httpService.hasAuthToken();
     }
 }
-
-export const authService = new AuthService();

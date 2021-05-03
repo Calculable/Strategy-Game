@@ -1,7 +1,6 @@
 import React from 'react'
 import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
-import ResourceCounter from "../resourceCounter";
 
 let COAL_MINE_MODAL = "coalMineModal";
 

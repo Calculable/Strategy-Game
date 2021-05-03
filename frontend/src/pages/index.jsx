@@ -1,39 +1,46 @@
 /*index.jsx*/
 import React from "react";
-import {loginService} from '../services/login-service.js';
-import {apiService} from '../services/api-service.js';
+import {LoginService} from '../services/login-service.js';
 import {UiController} from '../services/ui-controller.js';
 
 import Layout from "./layout";
 import LoginForm from "./loginForm";
 import ResourceCounter from "./resourceCounter";
 import Gameboard from "./gameboard";
+import {httpService} from "../services/http-service";
+import {ApiService} from "../services/api-service";
+import {FakeApiService} from "../services/fake-api-service";
 
 class MainPage extends React.Component {
 
     constructor(props) {
         super(props);
+
+
+        this.apiService = new FakeApiService(httpService);
+        this.loginService = new LoginService(httpService);
+
         this.state = {
             showGameboard: false,
-            resourceStats: apiService.getRessourceStats(),
-            workplaceStats: apiService.getFakeWorkplaceStats()
+            resourceStats: this.apiService.getRessourceStats(),
+            workplaceStats: this.apiService.getWorkplaceStats()
         };
         this.loginHandler = this.loginHandler.bind(this);
 
-        this.uiController = new UiController(this);
+        this.uiController = new UiController(this, httpService);
         this.uiController.pollInformation(this);
 
     }
 
     loginHandler(e) {
         e.preventDefault();
-        loginService.submitLogin().then((loginSuccessful) => {
+        this.loginService.submitLogin().then((loginSuccessful) => {
             if (loginSuccessful) {
                 this.setState({
                     showGameboard: true
                 })
             } else {
-                //alert("Login nicht erfolgreich");
+                //alert("Login failed");
             }
         });
 
