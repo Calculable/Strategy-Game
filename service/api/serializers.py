@@ -2,6 +2,8 @@ from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 from .models import Player, Woodcutters, Mine, Townhall, ArmyCenter
+from datetime import datetime, timezone
+from django.conf import settings
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,6 +11,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username',)
 
 class WoodcuttersSerializer(serializers.ModelSerializer):
+    amountWood = serializers.SerializerMethodField()
+
+    def get_amountWood(self, obj):
+        timedeltaValue = datetime.now(timezone.utc) - obj.lastUpdate
+        return obj.amountWood + int(((timedeltaValue.seconds//60)%60) * (obj.buildinglevel * obj.amountDedicatedWorkers * settings.WOODCUTTERS_MULTIPLIER))
+
     class Meta:
         model = Woodcutters
         fields = ('amountWood', 'amountDedicatedWorkers', 'buildinglevel')

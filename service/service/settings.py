@@ -146,3 +146,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+WOODCUTTERS_MULTIPLIER = 1.25 #Used to calculate amountWood (time_past_since_last_update * (buildinglevel * amountDedicatedWorkers * WOODCUTTERS_MULTIPLIER))
+WOODCUTTERS_BUILDING_COST_MULTIPLIER = 2.5 #Cost of next level is (buildinglevel * WOODCUTTERS_BUILDING_COST_MULTIPLIER)
