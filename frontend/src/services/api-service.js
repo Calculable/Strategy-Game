@@ -11,7 +11,7 @@ export class ApiService {
     }
 
     async getWorkplaceStats() {
-        return await this.httpService.ajax("GET", "/api/buildingInformation/");
+        return this.httpService.ajax("GET", "/api/buildingInformation/");
     }
 
 
