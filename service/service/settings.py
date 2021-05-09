@@ -147,5 +147,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-WOODCUTTERS_MULTIPLIER = 1.25 #Used to calculate amountWood (time_past_since_last_update * (buildinglevel * amountDedicatedWorkers * WOODCUTTERS_MULTIPLIER))
+WOODCUTTERS_MULTIPLIER = 1.5 #Used to calculate amountWood (time_past_since_last_update * (buildinglevel * amountDedicatedWorkers * WOODCUTTERS_MULTIPLIER))
 WOODCUTTERS_BUILDING_COST_MULTIPLIER = 2.5 #Cost of next level is (buildinglevel * WOODCUTTERS_BUILDING_COST_MULTIPLIER)
+
+MINE_COAL_MULTIPLIER = 1.5
+MINE_IRON_MULTIPLIER = 1.15
+MINE_BUILDING_COST_MULTIPLIER = 2.5
+
+###
+# NOTES
+# We should refactor the whole views logic and also isolate some calculations (now it's ugly duplicated code)

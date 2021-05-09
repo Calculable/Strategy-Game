@@ -22,6 +22,17 @@ class WoodcuttersSerializer(serializers.ModelSerializer):
         fields = ('amountWood', 'amountDedicatedWorkers', 'buildinglevel')
 
 class MineSerializer(serializers.ModelSerializer):
+    amountCoal = serializers.SerializerMethodField()
+    amountIronOre = serializers.SerializerMethodField()
+
+    def get_amountCoal(self, obj):
+        timedeltaValue = datetime.now(timezone.utc) - obj.lastUpdate
+        return obj.amountCoal + int(((timedeltaValue.seconds//60)%60) * (obj.buildinglevel * obj.amountDedicatedWorkers * settings.MINE_COAL_MULTIPLIER))
+
+    def get_amountIronOre(self, obj):
+        timedeltaValue = datetime.now(timezone.utc) - obj.lastUpdate
+        return obj.amountIronOre + int(((timedeltaValue.seconds//60)%60) * (obj.buildinglevel * obj.amountDedicatedWorkers * settings.MINE_IRON_MULTIPLIER))
+
     class Meta:
         model = Mine
         fields = ('amountCoal', 'amountIronOre', 'amountDedicatedWorkers', 'buildinglevel')
@@ -29,7 +40,7 @@ class MineSerializer(serializers.ModelSerializer):
 class TownhallSerializer(serializers.ModelSerializer):
     class Meta:
         model = Townhall
-        fields = ('amountWorkersOwned', 'money', 'buildinglevel')
+        fields = ('amountWorkersFree', 'money', 'buildinglevel')
 
 class ArmySerializer(serializers.ModelSerializer):
     class Meta:
