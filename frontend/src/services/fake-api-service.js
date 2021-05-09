@@ -1,7 +1,12 @@
 export class FakeApiService {
 
-    getRessourceStats() {
-        return {
+    constructor(httpService) {
+        this.httpService = httpService;
+    }
+
+
+    async getRessourceStats() {
+        return Promise.resolve({
             materials: {
                 wood: this.randomRessourceCount(),
                 iron: this.randomRessourceCount(),
@@ -10,29 +15,32 @@ export class FakeApiService {
                 diamond: this.randomRessourceCount()
             },
             freeWorkers: this.randomWorkerCount()
-        };
+        });
     }
 
 
-    getWorkplaceStats() {
-        return {
+    async getWorkplaceStats() {
+        return Promise.resolve({
             woodCutter: this.getRandomWorkplaceStats(),
             stoneMine: this.getRandomWorkplaceStats(),
             coalMine: this.getRandomWorkplaceStats(),
             fisherSquare: this.getRandomWorkplaceStats(),
             cornfield: this.getRandomWorkplaceStats(),
-        };
+        });
     }
 
 
-    setWorkerForWorkplace(amountOfWorkers, workplace) {
-        //...
+    async setWorkerForWorkplace(workplace, amountOfWorkers) {
+        return this.httpService.ajax("PUT", "/api/" + workplace, {amoundDedicatedWorkers: amountOfWorkers});
     }
 
-    levelUpWorkplace(workplace) {
-        //...
+    async levelUpWorkplace(workplace, newLevel) {
+        return this.httpService.ajax("PUT", "/api/" + workplace, {buildingLevel: newLevel});
     }
 
+    async getWoodcutterStats() {
+        return this.httpService.ajax("GET", "/api/woodcutters");
+    }
 
     /*Helper Functions*/
     getRandomWorkplaceStats() {

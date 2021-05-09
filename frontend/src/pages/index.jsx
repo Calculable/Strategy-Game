@@ -22,8 +22,8 @@ class MainPage extends React.Component {
 
         this.state = {
             showGameboard: false,
-            resourceStats: this.apiService.getRessourceStats(),
-            workplaceStats: this.apiService.getWorkplaceStats()
+            //resourceStats: this.apiService.getRessourceStats(),
+            //workplaceStats: this.apiService.getWorkplaceStats()
         };
         this.loginHandler = this.loginHandler.bind(this);
 
@@ -32,20 +32,29 @@ class MainPage extends React.Component {
 
     }
 
-    loginHandler(e) {
+    async loginHandler(e) {
+        //Loading-Indicator could be added here
         e.preventDefault();
-        this.loginService.submitLogin().then((loginSuccessful) => {
+        let loginSuccessful = await this.loginService.submitLogin();
+
             if (loginSuccessful) {
+
+                let resourceStats = await this.apiService.getRessourceStats();
+                let workplaceStats = await this.apiService.getWorkplaceStats();
+
                 this.setState({
+                    resourceStats: resourceStats,
+                    workplaceStats: workplaceStats,
                     showGameboard: true
-                })
+
+                });
             } else {
                 //alert("Login failed");
             }
-        });
+        }
 
 
-    }
+
 
     render() {
         return (
