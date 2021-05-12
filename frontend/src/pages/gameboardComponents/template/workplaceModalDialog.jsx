@@ -34,12 +34,14 @@ class WorkplaceModalDialog extends React.Component {
                                            onChange={this.handleAssignedWorkerChange.bind(this)}/>
                                 </label>
 
-                                {(this.state.assignedWorkers <= (this.props.resourceStats.freeWorkers + this.props.workers)) &&
+
+
+                                 {(this.state.assignedWorkers <= (this.props.freeWorkers + this.props.workers)) &&
                                 <button type="button" className="btn btn-outline-secondary ml-1"
                                         onClick={this.assignWorkers.bind(this)}>Set</button>
                                 }
 
-                                {(this.state.assignedWorkers > (this.props.resourceStats.freeWorkers + this.props.workers)) &&
+                                {(this.state.assignedWorkers > (this.props.freeWorkers + this.props.workers)) &&
                                 <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
                                         disabled>Not enough workers</button>
                                 }
@@ -51,6 +53,12 @@ class WorkplaceModalDialog extends React.Component {
                                 className="badge badge-secondary">{this.props.level ? this.props.level : ""}</span></h6>
 
 
+                            <button type="button" className="btn btn-outline-secondary mt-1"
+                                    onClick={this.levelUp.bind(this)}>Upgrade to
+                                Level {this.props.level ? this.props.level + 1 : ""}</button>
+
+
+                            {/*
                             {(this.props.levelUpCondition.wood <= this.props.resourceStats.materials.wood) &&
                             (this.props.levelUpCondition.iron <= this.props.resourceStats.materials.iron) &&
                             (this.props.levelUpCondition.stone <= this.props.resourceStats.materials.stone) &&
@@ -100,6 +108,7 @@ class WorkplaceModalDialog extends React.Component {
                             <span> / </span> <span className="badge badge-secondary">5min</span>
                             <span> / </span> <span className="badge badge-secondary">Worker</span>
 
+*/}
 
                         </div>
                         <div class="modal-footer">
@@ -117,11 +126,12 @@ class WorkplaceModalDialog extends React.Component {
     };
 
     levelUp() {
-        this.props.levelUpHandler(this.props.shortName);
+        this.props.updateWorkplaceHandler(this.props.shortName, this.props.workers, this.props.level + 1);
+
     }
 
     assignWorkers() {
-        this.props.assignWorkerHandler(this.state.assignedWorkers, this.props.shortName);
+        this.props.updateWorkplaceHandler(this.props.shortName, parseInt(this.state.assignedWorkers), this.props.level);
     }
 }
 

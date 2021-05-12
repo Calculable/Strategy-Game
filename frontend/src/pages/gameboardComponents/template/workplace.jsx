@@ -6,10 +6,15 @@ class Workplace extends React.Component {
             <div className={'building ' + this.props.className}>
                 <p className="building-icon"><i className={this.props.icon}></i></p>
                 <h1><strong>{this.props.displayName}<br/></strong>
-                    {this.props.level &&
-                    <small>Level {this.props.level}</small>
+                    {this.props.level !== "" &&
+                    <small>Level: {this.props.level}</small>
+                    }
+                    <br></br>
+                    {this.props.workers !== "" &&
+                    <small>Arbeiter: {this.props.workers}</small>
                     }
                 </h1>
+
 
                 {!this.props.buttonDisabled &&
                 <button type="button" className="btn btn-secondary" data-toggle="modal"
@@ -28,10 +33,14 @@ class Workplace extends React.Component {
                 </div>
                 }
 
+
+                {/*
                 {this.props.workers &&
                 <p className={"worker-display"}><strong><span>Worker</span></strong>: <span
                     className="badge badge-light">{this.props.workers}</span></p>
                 }
+
+                */}
             </div>
         );
     }
