@@ -147,6 +147,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Settings needed for Calculations
 WOODCUTTERS_MULTIPLIER = 1.5 #Used to calculate wood per minute
 WOODCUTTERS_BUILDING_COST_MULTIPLIER = 2.5
 WOODCUTTERS_WOOD_PRICE = 1
@@ -164,7 +165,3 @@ ARMYCENTER_BUILDING_COST_MULTIPLIER = 2.5
 ARMYCENTER_ARCHER_COST = 25
 ARMYCENTER_BLOCKER_COST = 50
 ARMYCENTER_SWORDSMAN_COST = 100 
-
-###
-# NOTES
-# We should refactor the whole views logic and also isolate some calculations (now it's ugly duplicated code)

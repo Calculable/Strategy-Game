@@ -10,7 +10,6 @@ from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken, GameSerializer, WoodcuttersSerializer, MineSerializer, TownhallSerializer, ArmySerializer
 from datetime import datetime, timezone
 
-#TODO: Refactor (Extract Calculations, remove duplicated spaghetti-code)
 @api_view(['GET', 'PUT'])
 def mineRequests(request):
     """
