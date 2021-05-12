@@ -35,3 +35,13 @@ To remove all previously generated containers to start fresh enter:
 ```
 docker system prune --all
 ```
+### Remove volume
+to see all volumes:
+```
+docker volume ls
+```
+to remove strategy game volume:
+```
+docker rm postgres
+docker volume rm ds1-strategygame_pg_data
+```

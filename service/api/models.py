@@ -19,7 +19,7 @@ class Mine(models.Model):
 
 class Townhall(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    amountWorkersOwned = models.IntegerField(default=2)
+    amountWorkersFree = models.IntegerField(default=2)
     money = models.IntegerField(default=100)
     buildinglevel = models.IntegerField(default=1)
     lastUpdate = models.DateTimeField(default=datetime.now(timezone.utc))

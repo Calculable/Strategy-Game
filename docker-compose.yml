@@ -1,9 +1,8 @@
 version: '3.8'
 services:
   postgres:
-    restart: always
     container_name: postgres
-    image: postgres
+    image: postgres:13-alpine
     environment:
       - POSTGRES_DB=database
       - POSTGRES_USER=postgres
@@ -12,15 +11,14 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./pg_data:/data/postgres
+      - pg_data:/data/postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
-      timeout: 5s
-      retries: 5
+      timeout: 30s
+      retries: 20
 
   service1:
-    restart: always
     image: myservice
     build:
       context: ./service
@@ -33,7 +31,6 @@ services:
         condition: service_healthy
 
   service2:
-    restart: always
     image: myservice
     container_name: service2
     command: python manage.py runserver 0.0.0.0:80
@@ -52,7 +49,6 @@ services:
       - service2
 
   frontend:
-    restart: always
     build: 
       context: ./frontend
       dockerfile: Dockerfile
@@ -64,7 +60,6 @@ services:
       - PATH=/app/node_modules/.bin:$PATH
 
   traefik:
-    restart: always
     image: traefik:v2.4
     container_name: traefik
     ports:
@@ -78,10 +73,11 @@ services:
       - frontend
 
 volumes:
-  pg-data:
+  pg_data:
 
 networks:
   backend:
     internal: false #ToDo: change to true later
   frontend:
     internal: false
+
