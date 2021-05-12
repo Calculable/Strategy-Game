@@ -3,7 +3,6 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 from .models import Player, Woodcutters, Mine, Townhall, ArmyCenter
 from datetime import datetime, timezone
-from django.conf import settings
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,9 +80,22 @@ class TownhallSerializer(serializers.ModelSerializer):
         fields = ('amountWorkersFree', 'money', 'buildinglevel', 'levelUpCost', 'workerCost')
 
 class ArmySerializer(serializers.ModelSerializer):
+    archerCost = serializers.SerializerMethodField()
+    blockerCost = serializers.SerializerMethodField()
+    swordsmanCost = serializers.SerializerMethodField()
+
+    def get_archerCost(self, obj):
+        return obj.getArcherCost()
+    
+    def get_blockerCost(self, obj):
+        return obj.getBlockerCost()
+    
+    def get_swordsmanCost(self, obj):
+        return obj.getSwordsmanCost()
+
     class Meta:
         model = ArmyCenter
-        fields = ('amountArchers', 'archerLevel', 'amountBlockers', 'blockerLevel', 'amountSwordsman', 'swordsmanLevel', 'buildinglevel')
+        fields = ('amountArchers', 'amountBlockers', 'amountSwordsman', 'buildinglevel', 'archerCost', 'blockerCost', 'swordsmanCost')
 
 class GameSerializer(serializers.ModelSerializer):
     woodcutters = WoodcuttersSerializer()

@@ -58,7 +58,7 @@ class Mine(models.Model):
 class Townhall(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     amountWorkersFree = models.IntegerField(default=2)
-    money = models.IntegerField(default=100)
+    money = models.IntegerField(default=5)
     buildinglevel = models.IntegerField(default=1)
 
     def getLevelupCost(self):
@@ -70,13 +70,21 @@ class Townhall(models.Model):
 class ArmyCenter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     amountArchers = models.IntegerField(default=0)
-    archerLevel = models.IntegerField(default=1)
     amountBlockers = models.IntegerField(default=0)
-    blockerLevel = models.IntegerField(default=1)
     amountSwordsman = models.IntegerField(default=0)
-    swordsmanLevel = models.IntegerField(default=1)
     buildinglevel = models.IntegerField(default=1)
-    lastUpdate = models.DateTimeField(default=datetime.now(timezone.utc))
+
+    def getLevelupCost(self):
+        return (self.buildinglevel + 1) * settings.ARMYCENTER_BUILDING_COST_MULTIPLIER
+
+    def getArcherCost(self):
+        return settings.ARMYCENTER_ARCHER_COST
+    
+    def getBlockerCost(self):
+        return settings.ARMYCENTER_BLOCKER_COST
+    
+    def getSwordsmanCost(self):
+        return settings.ARMYCENTER_SWORDSMAN_COST
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)

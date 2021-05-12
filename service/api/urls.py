@@ -1,6 +1,6 @@
 from django.urls import path
 #from .views import PlayerView
-from .views import current_user, UserList, getBuildingInformation, woodcuttersRequests, mineRequests, townhallRequests
+from .views import current_user, UserList, getBuildingInformation, woodcuttersRequests, mineRequests, townhallRequests, armyCenterRequests
 
 urlpatterns = [
     path('current_user/', current_user),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('woodcutters', woodcuttersRequests),
     path('mine', mineRequests),
     path('townhall', townhallRequests),
+    path('armyCenter', armyCenterRequests),
 ]

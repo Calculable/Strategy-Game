@@ -7,8 +7,7 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken, GameSerializer, WoodcuttersSerializer, MineSerializer, TownhallSerializer
-from django.conf import settings
+from .serializers import UserSerializer, UserSerializerWithToken, GameSerializer, WoodcuttersSerializer, MineSerializer, TownhallSerializer, ArmySerializer
 from datetime import datetime, timezone
 
 #TODO: Refactor (Extract Calculations, remove duplicated spaghetti-code)
@@ -176,6 +175,7 @@ def townhallRequests(request):
                 return Response('Not enough money for level up', status=status.HTTP_400_BAD_REQUEST)
             elif 'buildinglevel' in request.data and request.data['buildinglevel'] == currentTownhall.buildinglevel + 1:
                 currentTownhall.money = currentTownhall.money - currentTownhall.getLevelupCost()
+                currentTownhall.buildinglevel = currentTownhall.buildinglevel + 1
             
             if 'amountWorkersToBuy' in request.data and request.data['amountWorkersToBuy'] < 0:
                 return Response('You cant sell workers', status=status.HTTP_400_BAD_REQUEST)
@@ -189,6 +189,65 @@ def townhallRequests(request):
             currentMine.save()
             currentTownhall.save()
             return Response(TownhallSerializer(Townhall.objects.get(user=request.user)).data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'PUT'])
+def armyCenterRequests(request):
+    """
+    GET:
+        - Gets all informations about your ArmyCenter.
+    
+    PUT:
+        - amountArchersToBuy
+        - amountBlockersToBuy
+        - amountSwordsmanToBuy
+        - buildinglevel has to be the current level or if you want to levelup: current level + 1
+    """
+    if request.method == 'GET':
+        serializer = ArmySerializer(ArmyCenter.objects.get(user=request.user))
+        return Response(serializer.data)
+
+    if request.method == 'PUT':
+        currentArmyCenter = ArmyCenter.objects.get(user=request.user)
+        serializer = ArmySerializer(currentArmyCenter, data=request.data)
+        if serializer.is_valid():
+            currentTownhall = Townhall.objects.get(user=request.user)
+
+            if 'amountArchersToBuy' in request.data and request.data['amountArchersToBuy'] < 0:
+                return Response('amountArchersToBuy cant be below 0', status=status.HTTP_400_BAD_REQUEST)
+            elif 'amountArchersToBuy' in request.data  and request.data['amountArchersToBuy'] * currentArmyCenter.getArcherCost() > currentTownhall.money:
+                return Response('Youre too poor to buy so many archers', status=status.HTTP_400_BAD_REQUEST)
+            elif 'amountArchersToBuy' in request.data:
+                currentArmyCenter.amountArchers = currentArmyCenter.amountArchers + request.data['amountArchersToBuy']
+                currentTownhall.money = currentTownhall.money - request.data['amountArchersToBuy'] * currentArmyCenter.getArcherCost()
+
+            if 'amountBlockersToBuy' in request.data and request.data['amountBlockersToBuy'] < 0:
+                return Response('amountBlockersToBuy cant be below 0', status=status.HTTP_400_BAD_REQUEST)
+            elif 'amountBlockersToBuy' in request.data  and request.data['amountBlockersToBuy'] * currentArmyCenter.getBlockerCost() > currentTownhall.money:
+                return Response('Youre too poor to buy so many blockers', status=status.HTTP_400_BAD_REQUEST)
+            elif 'amountBlockersToBuy' in request.data:
+                currentArmyCenter.amountBlockers = currentArmyCenter.amountBlockers + request.data['amountBlockersToBuy']
+                currentTownhall.money = currentTownhall.money - request.data['amountBlockersToBuy'] * currentArmyCenter.getBlockerCost()
+
+            if 'amountSwordsmanToBuy' in request.data and request.data['amountSwordsmanToBuy'] < 0:
+                return Response('amountSwordsmanToBuy cant be below 0', status=status.HTTP_400_BAD_REQUEST)
+            elif 'amountSwordsmanToBuy' in request.data  and request.data['amountSwordsmanToBuy'] * currentArmyCenter.getSwordsmanCost() > currentTownhall.money:
+                return Response('Youre too poor to buy so many swordsman', status=status.HTTP_400_BAD_REQUEST)
+            elif 'amountSwordsmanToBuy' in request.data:
+                currentArmyCenter.amountSwordsman = currentArmyCenter.amountSwordsman + request.data['amountSwordsmanToBuy']
+                currentTownhall.money = currentTownhall.money - request.data['amountSwordsmanToBuy'] * currentArmyCenter.getSwordsmanCost()
+
+            if 'buildinglevel' in request.data and not (request.data['buildinglevel'] == currentArmyCenter.buildinglevel + 1 or request.data['buildinglevel'] == currentArmyCenter.buildinglevel):
+                return Response('Its not possible to skip levels', status=status.HTTP_400_BAD_REQUEST)
+            elif 'buildinglevel' in request.data and currentTownhall.money < currentArmyCenter.getLevelupCost():
+                return Response('Not enough money for level up', status=status.HTTP_400_BAD_REQUEST)
+            elif 'buildinglevel' in request.data and request.data['buildinglevel'] == currentArmyCenter.buildinglevel + 1:
+                currentTownhall.money = currentTownhall.money - currentArmyCenter.getLevelupCost()
+                currentArmyCenter.buildinglevel = currentArmyCenter.buildinglevel + 1
+
+            currentTownhall.save()
+            currentArmyCenter.save()
+            return Response(ArmySerializer(ArmyCenter.objects.get(user=request.user)).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
