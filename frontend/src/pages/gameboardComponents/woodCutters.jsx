@@ -48,9 +48,9 @@ class WoodCuttersDialog extends React.Component {
                                   }}
                                   shortName={"woodcutters"}
                                   freeWorkers={this.props.freeWorkers}
-                                  woodPerMinute={this.props.woodPerMinute ? this.props.woodPerMinute : 0}
-                                  coalPerMinute={this.props.coalPerMinute ? this.props.coalPerMinute : 0}
-                                  ironOrePerMinute={this.props.ironOrePerMinute ? this.props.ironOrePerMinute : 0}
+                                  woodPerMinute={this.props.stats.woodPerMinute ? this.props.stats.woodPerMinute : 0}
+                                  coalPerMinute={this.props.stats.coalPerMinute ? this.props.stats.coalPerMinute : 0}
+                                  ironOrePerMinute={this.props.stats.ironOrePerMinute ? this.props.stats.ironOrePerMinute : 0}
 
             >
 

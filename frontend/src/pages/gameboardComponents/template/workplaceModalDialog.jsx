@@ -65,7 +65,7 @@ class WorkplaceModalDialog extends React.Component {
                             <br/>
 
                             {(this.props.levelUpCost < this.props.money) &&
-                            <span className="badge badge-danger mr-1">- {this.props.levelUpCondition.wood}x Money</span>}
+                            <span className="badge badge-danger mr-1">- {this.props.levelUpCost}x Money</span>}
 
 
 
@@ -79,7 +79,6 @@ class WorkplaceModalDialog extends React.Component {
                             <span className="badge badge-info mr-1">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
 
                             <span> per </span> <span className="badge badge-secondary"> minute </span>
-                            <span> per </span> <span className="badge badge-secondary"> worker </span>
 
                         </div>
                         <div class="modal-footer">
