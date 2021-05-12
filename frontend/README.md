@@ -73,6 +73,7 @@ To start Test-Runner:
 Afterwards, press a to run all the tests
 
 ![Test-Output](documentation/tests.png)
+(Auf dem Screenshot ist nur ein Test zu sehen, später wurden weitere dazugefügt)
 
 ## User Interface with React
 
@@ -125,16 +126,19 @@ We used boostrap and it's CSS-files to speed up development. The Boostrap-Depend
  
 ## Architectural Decisions
 
+### Client-Side Rendering
+
+We decided to use React for our Client-Side rendering, mainly because it allowed us to distribute the work between the team-members easier. That way we had to excactly define our API-Endpoints and how the Backend and the Frontend should Communicate.
+
 ### Redundance
 
 Looking at the code in the frontend there seems to be a lot of redundance. We decided not to represent our different types of "buildings" in a generic way (for example we have a database table for each type of building instad of a generic table "building"). For now the functionality for the different types of building is more or less the same which brings some redundance into the code. The reason why we accepted some redundancy instead of introducing a new abstraction layer was because we think it might be possible that each type of building will get more indidivual behaviour if the game was developed further. 
-
 
 ### Common UI-Components
 
 We used a React-"Layout" to define common components that should be visible on more than one page (mainly for the navbar). The alternative would have been to copy-paste the common components to each page where they are needed. We choose the React-Layout to reduce redundancy, accpeting that the code became a little bit mor compex.
 
-### Polling vs. Socket.io
+### Polling vs. Websockets
 
 The ressources of a user are dependent on the time so we have to refresh the ui every now and then. We could have used Sockets (for example with socket.io) so the server could inform the client about changes. We evaluated socket.io but decided against it because we think it would introduce a lot of complexity into our code especially because we use multiple instances of our service and a load balancer which makes it even harder to maintain an persitant connection between the server and the client (we wanted to have stateless services). Instead we decided that the client (frontend) polls the server every 10 seconds. This solution has the disadvantage that it is not very performant because the server has to do the same calculation over and over again when sometimes there is not even a new result. This solution would also not scale very well if there were many users playing at the same time but it sould work fine for our use-case. Because we use React, the frontend is only repainted if there is a change in the data.
 

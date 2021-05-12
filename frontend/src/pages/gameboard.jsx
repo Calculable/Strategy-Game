@@ -1,7 +1,7 @@
 import React from 'react'
-import WoodCutter from "./gameboardComponents/woodCutter";
+import WoodCutters from "./gameboardComponents/woodCutters";
 import StoneMine from "./gameboardComponents/stoneMine";
-import CoalMine from "./gameboardComponents/coalMine";
+import Mine from "./gameboardComponents/mine";
 import FishermansSquare from "./gameboardComponents/fishermansSquare";
 import Cornfield from "./gameboardComponents/cornfield";
 
@@ -11,18 +11,18 @@ class Gameboard extends React.Component {
     render() {
         return (
             <div className="board">
-                <WoodCutter stats={this.props.workplaceStats.woodCutter}
-                            resourceStats={this.props.resourceStats}
-                            assignWorkerHandler={this.props.assignWorkerHandler}
-                            levelUpHandler={this.props.levelUpHandler}></WoodCutter>
-                <StoneMine stats={this.props.workplaceStats.stoneMine}
+                <WoodCutters stats={this.props.workplaceStats.woodcutters}
+                             freeWorkers={this.props.workplaceStats.townhall.amountWorkersOwned}
+                             updateWorkplaceHandler={this.props.updateWorkplaceHandler}></WoodCutters>
+
+                <Mine stats={this.props.workplaceStats.mine}
+                      freeWorkers={this.props.workplaceStats.townhall.amountWorkersOwned}
+                      updateWorkplaceHandler={this.props.updateWorkplaceHandler}></Mine>
+
+                {/*<StoneMine stats={this.props.workplaceStats.stoneMine}
                            resourceStats={this.props.resourceStats}
                            assignWorkerHandler={this.props.assignWorkerHandler}
                            levelUpHandler={this.props.levelUpHandler}></StoneMine>
-                <CoalMine stats={this.props.workplaceStats.coalMine}
-                          resourceStats={this.props.resourceStats}
-                          assignWorkerHandler={this.props.assignWorkerHandler}
-                          levelUpHandler={this.props.levelUpHandler}></CoalMine>
                 <FishermansSquare stats={this.props.workplaceStats.fisherSquare}
                                   resourceStats={this.props.resourceStats}
                                   assignWorkerHandler={this.props.assignWorkerHandler}
@@ -30,7 +30,7 @@ class Gameboard extends React.Component {
                 <Cornfield stats={this.props.workplaceStats.cornfield}
                            resourceStats={this.props.resourceStats}
                            assignWorkerHandler={this.props.assignWorkerHandler}
-                           levelUpHandler={this.props.levelUpHandler}></Cornfield>
+                           levelUpHandler={this.props.levelUpHandler}></Cornfield>*/}
             </div>
         )
     }

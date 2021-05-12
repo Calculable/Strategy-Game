@@ -92,20 +92,19 @@ describe("The Auth-Service", function () {
     describe("The Fake API-Service", function () {
 
         it('returns workplaces', () => {
-            expect(Object.keys(fakeApiService.getWorkplaceStats()).length).toBeGreaterThan(0);
+            return fakeApiService.getWorkplaceStats().then(result => {
+                expect(Object.keys(result).length).toBeGreaterThan(0);
+            });
         });
 
-        it('returns ressourceState', () => {
-            expect(Object.keys(fakeApiService.getRessourceStats()).length).toBeGreaterThan(0);
+        it('returns result on update workplace', () => {
+            return fakeApiService.updateWorkplace("woodcutters", 1, 1).then(result => {
+                expect(result.amountDedicatedWorkers).toEqual(1);
+                expect(result.buildinglevel).toEqual(1);
+            });
         });
 
-        it('returns undefined on levelUpWorkplace', () => {
-            expect(fakeApiService.levelUpWorkplace("test")).toBeUndefined();
-        });
 
-        it('returns undefined on setWorkerForWorkplace', () => {
-            expect(fakeApiService.setWorkerForWorkplace(1, "test")).toBeUndefined();
-        });
     });
 
 
@@ -134,32 +133,18 @@ describe("The Auth-Service", function () {
             });
         });
 
-        //ToDo: Fix those three tests
 
+        it('uses httpService to updateWorkplace', () => {
 
-        it.skip('uses httpService to getResourceStats', () => {
+            mockHttpService.expects("ajax").withArgs("PUT", "/api/woodcutters", {
+                amountDedicatedWorkers: 1,
+                buildinglevel: 1,
+                //amountWood: 0,
+                //amountCoal: 0,
+                //amountIronOre: 0
+            }).once();
 
-            mockHttpService.expects("ajax").withArgs("GET", "/api/resourceInformation/").once();
-
-            return apiService.getWorkplaceStats().then(result => {
-                mockHttpService.verify();
-            });
-        });
-
-        it.skip('uses httpService to setWorker', () => {
-
-            mockHttpService.expects("ajax").withArgs("POST", "/api/building/woodcutter/worker", {amount: 5}).once();
-
-            return apiService.setWorkerForWorkplace(5, "woodcutter").then(result => {
-                mockHttpService.verify();
-            });
-        });
-
-        it.skip('uses httpService to levelUpWorkplace', () => {
-
-            mockHttpService.expects("ajax").withArgs("POST", "/api/building/woodcutter/level", {amount: 1}).once();
-
-            return apiService.levelUpWorkplace("woodcutter").then(result => {
+            return apiService.updateWorkplace("woodcutters", 1, 1).then(result => {
                 mockHttpService.verify();
             });
         });

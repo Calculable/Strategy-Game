@@ -9,6 +9,7 @@ export class AuthService {
         
         if (result.token) {
             alert("Loged in with token: " + result.token);
+            console.log(result.token)
             this.httpService.setAuthToken(result.token);
             return result.token;
         } else {

@@ -5,7 +5,7 @@ export class FakeApiService {
     }
 
 
-    async getRessourceStats() {
+    /*async getRessourceStats() {
         return Promise.resolve({
             materials: {
                 wood: this.randomRessourceCount(),
@@ -16,30 +16,59 @@ export class FakeApiService {
             },
             freeWorkers: this.randomWorkerCount()
         });
-    }
+    }*/
 
 
     async getWorkplaceStats() {
-        return Promise.resolve({
+        /*return Promise.resolve({
             woodCutter: this.getRandomWorkplaceStats(),
             stoneMine: this.getRandomWorkplaceStats(),
             coalMine: this.getRandomWorkplaceStats(),
             fisherSquare: this.getRandomWorkplaceStats(),
             cornfield: this.getRandomWorkplaceStats(),
         });
+    }*/
+
+        return Promise.resolve(
+            {
+                "woodcutters":{
+                    "amountWood":0,
+                    "amountDedicatedWorkers":0,
+                    "buildinglevel":1
+                },
+                "mine":{
+                    "amountCoal":0,
+                    "amountIronOre":0,
+                    "amountDedicatedWorkers":0,
+                    "buildinglevel":1
+                },
+                "townhall":{
+                    "amountWorkersOwned":2,
+                    "money":100,
+                    "buildinglevel":1
+                },
+                "armyCenter":{
+                    "amountArchers":0,
+                    "archerLevel":1,
+                    "amountBlockers":0,
+                    "blockerLevel":1,
+                    "amountSwordsman":0,
+                    "swordsmanLevel":1,
+                    "buildinglevel":1
+                }
+            }
+        );
+
     }
 
-
-    async setWorkerForWorkplace(workplace, amountOfWorkers) {
-        return this.httpService.ajax("PUT", "/api/" + workplace, {amoundDedicatedWorkers: amountOfWorkers});
-    }
-
-    async levelUpWorkplace(workplace, newLevel) {
-        return this.httpService.ajax("PUT", "/api/" + workplace, {buildingLevel: newLevel});
+    async updateWorkplace(workplace, amountOfWorkers, level) {
+        return Promise.resolve({
+                "amountDedicatedWorkers":amountOfWorkers,
+                "buildinglevel":level
+            });
     }
 
     async getWoodcutterStats() {
-        return this.httpService.ajax("GET", "/api/woodcutters");
     }
 
     /*Helper Functions*/

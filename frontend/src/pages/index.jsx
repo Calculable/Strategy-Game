@@ -17,7 +17,7 @@ class MainPage extends React.Component {
         super(props);
 
 
-        this.apiService = new FakeApiService(httpService);
+        this.apiService = new ApiService(httpService);
         this.loginService = new LoginService(httpService);
 
         this.state = {
@@ -39,13 +39,13 @@ class MainPage extends React.Component {
 
             if (loginSuccessful) {
 
-                let resourceStats = await this.apiService.getRessourceStats();
+                //let resourceStats = await this.apiService.getRessourceStats();
                 let workplaceStats = await this.apiService.getWorkplaceStats();
 
                 this.setState({
-                    resourceStats: resourceStats,
                     workplaceStats: workplaceStats,
                     showGameboard: true
+                    //resourceStats: resourceStats,
 
                 });
             } else {
@@ -62,11 +62,11 @@ class MainPage extends React.Component {
                 <Layout>
                     {this.state.showGameboard &&
                     <div>
-                        <ResourceCounter resourceStats={this.state.resourceStats}></ResourceCounter>
+                        <ResourceCounter wood={this.state.workplaceStats.woodcutters.amountWood} coal={this.state.workplaceStats.mine.amountCoal} ironOre={this.state.workplaceStats.mine.amountIronOre} money={this.state.workplaceStats.townhall.money} workers={this.state.workplaceStats.townhall.amountWorkersOwned}></ResourceCounter>
+
                         <Gameboard workplaceStats={this.state.workplaceStats}
-                                   resourceStats={this.state.resourceStats}
-                                   assignWorkerHandler={this.uiController.assignWorkerHandler.bind(this.uiController)}
-                                   levelUpHandler={this.uiController.levelUpHandler.bind(this.uiController)}></Gameboard>
+                                   updateWorkplaceHandler={this.uiController.updateWorkplaceHandler.bind(this.uiController)}></Gameboard>
+
                     </div>
                     }
                     {!this.state.showGameboard &&

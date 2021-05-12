@@ -6,6 +6,14 @@ const tokenKey = "token";
 const localhost = "http://localhost";
 
 class HttpService {
+
+    handleErrors(response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response;
+    }
+
     ajax(method, url, data, headers) {
         const fetchHeaders = new Headers({'content-type': 'application/json', ...(headers || {})});
 
@@ -16,9 +24,14 @@ class HttpService {
         return fetch(localhost + url, {
             method: method,
             headers: fetchHeaders, body: JSON.stringify(data)
-        }).then(x => {
-            return x.json();
-        });
+        })
+            .then(this.handleErrors)
+            .then(x => {
+                return x.json();
+            }).catch(error => {
+                alert(error + " - You will be Redirected to the Login-Page");
+                window.location.replace("/");
+            });
     }
 
     setAuthToken(token) {
