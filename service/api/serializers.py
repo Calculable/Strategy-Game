@@ -12,18 +12,29 @@ class UserSerializer(serializers.ModelSerializer):
 
 class WoodcuttersSerializer(serializers.ModelSerializer):
     amountWood = serializers.SerializerMethodField()
+    levelUpCost = serializers.SerializerMethodField()
+    woodPerMinute = serializers.SerializerMethodField()
 
     def get_amountWood(self, obj):
         timedeltaValue = datetime.now(timezone.utc) - obj.lastUpdate
         return obj.amountWood + int(((timedeltaValue.seconds//60)%60) * (obj.buildinglevel * obj.amountDedicatedWorkers * settings.WOODCUTTERS_MULTIPLIER))
 
+    def get_levelUpCost(self, obj):
+        return (obj.buildinglevel + 1) * settings.WOODCUTTERS_BUILDING_COST_MULTIPLIER
+    
+    def get_woodPerMinute(self, obj):
+        return (obj.buildinglevel * obj.amountDedicatedWorkers * settings.WOODCUTTERS_MULTIPLIER)
+
     class Meta:
         model = Woodcutters
-        fields = ('amountWood', 'amountDedicatedWorkers', 'buildinglevel')
+        fields = ('amountWood', 'amountDedicatedWorkers', 'buildinglevel', 'levelUpCost', 'woodPerMinute')
 
 class MineSerializer(serializers.ModelSerializer):
     amountCoal = serializers.SerializerMethodField()
     amountIronOre = serializers.SerializerMethodField()
+    levelUpCost = serializers.SerializerMethodField()
+    coalPerMinute = serializers.SerializerMethodField()
+    ironOrePerMinute = serializers.SerializerMethodField()
 
     def get_amountCoal(self, obj):
         timedeltaValue = datetime.now(timezone.utc) - obj.lastUpdate
@@ -33,9 +44,18 @@ class MineSerializer(serializers.ModelSerializer):
         timedeltaValue = datetime.now(timezone.utc) - obj.lastUpdate
         return obj.amountIronOre + int(((timedeltaValue.seconds//60)%60) * (obj.buildinglevel * obj.amountDedicatedWorkers * settings.MINE_IRON_MULTIPLIER))
 
+    def get_levelUpCost(self, obj):
+        return (obj.buildinglevel + 1) * settings.MINE_BUILDING_COST_MULTIPLIER
+
+    def get_coalPerMinute(self, obj):
+        return (obj.buildinglevel * obj.amountDedicatedWorkers * settings.MINE_COAL_MULTIPLIER)
+    
+    def get_ironOrePerMinute(self, obj):
+        return (obj.buildinglevel * obj.amountDedicatedWorkers * settings.MINE_IRON_MULTIPLIER)
+
     class Meta:
         model = Mine
-        fields = ('amountCoal', 'amountIronOre', 'amountDedicatedWorkers', 'buildinglevel')
+        fields = ('amountCoal', 'amountIronOre', 'amountDedicatedWorkers', 'buildinglevel', 'levelUpCost', 'coalPerMinute', 'ironOrePerMinute')
 
 class TownhallSerializer(serializers.ModelSerializer):
     class Meta:

@@ -11,10 +11,7 @@ from .serializers import UserSerializer, UserSerializerWithToken, GameSerializer
 from django.conf import settings
 from datetime import datetime, timezone
 
-#class PlayerView(generics.ListAPIView):
-#    queryset = Player.objects.all()
-#    serializer_class = PlayerSerializer
-
+#TODO: Refactor (Extract Calculations, remove duplicated spaghetti-code)
 @api_view(['GET', 'PUT'])
 def mineRequests(request):
     """
@@ -49,7 +46,7 @@ def mineRequests(request):
             
             if 'buildinglevel' in request.data and request.data['buildinglevel'] == Mine.objects.get(user=request.user).buildinglevel + 1:
                 townhall = Townhall.objects.get(user=request.user)
-                townhall.money = townhall.money - Mine.objects.get(user=request.user).buildinglevel * settings.MINE_BUILDING_COST_MULTIPLIER
+                townhall.money = townhall.money - (Mine.objects.get(user=request.user).buildinglevel + 1) * settings.MINE_BUILDING_COST_MULTIPLIER
                 townhall.save()
             if 'amountDedicatedWorkers' in request.data and request.data['amountDedicatedWorkers'] != Mine.objects.get(user=request.user).amountDedicatedWorkers:
                 freeWorkers = Townhall.objects.get(user=request.user)
@@ -63,7 +60,6 @@ def mineRequests(request):
             timedeltaValue = datetime.now(timezone.utc) - current.lastUpdate
             amountCoalToSave = current.amountCoal + int(((timedeltaValue.seconds//60)%60) * (current.buildinglevel * current.amountDedicatedWorkers * settings.MINE_COAL_MULTIPLIER))
             amountIronToSave = current.amountIronOre + int(((timedeltaValue.seconds//60)%60) * (current.buildinglevel * current.amountDedicatedWorkers * settings.MINE_IRON_MULTIPLIER))
-
 
             serializer.save()
 
@@ -105,7 +101,7 @@ def woodcuttersRequests(request):
             
             if 'buildinglevel' in request.data and request.data['buildinglevel'] == Woodcutters.objects.get(user=request.user).buildinglevel + 1:
                 townhall = Townhall.objects.get(user=request.user)
-                townhall.money = townhall.money - Woodcutters.objects.get(user=request.user).buildinglevel * settings.WOODCUTTERS_BUILDING_COST_MULTIPLIER
+                townhall.money = townhall.money - (Woodcutters.objects.get(user=request.user).buildinglevel + 1) * settings.WOODCUTTERS_BUILDING_COST_MULTIPLIER
                 townhall.save()
             if 'amountDedicatedWorkers' in request.data and request.data['amountDedicatedWorkers'] != Woodcutters.objects.get(user=request.user).amountDedicatedWorkers:
                 freeWorkers = Townhall.objects.get(user=request.user)
