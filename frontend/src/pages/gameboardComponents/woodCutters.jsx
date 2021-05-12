@@ -17,7 +17,6 @@ class WoodCutters extends React.Component {
                     buttonDisabled={false}
                     workers={this.props.stats ? this.props.stats.amountDedicatedWorkers : 0}
                     level={this.props.stats ? this.props.stats.buildinglevel : 0}
-                    /*levelUpCondition={this.props.stats ? this.props.stats.level : 0}*/
                     /*performance={this.props.stats ? this.props.stats.level : 0}*/
                     modalTarget={"#" + WOOD_CUTTER_MODAL}>
                 </Workplace>
@@ -26,6 +25,8 @@ class WoodCutters extends React.Component {
                     updateWorkplaceHandler={this.props.updateWorkplaceHandler ? this.props.updateWorkplaceHandler : () => {
                     }}
                     freeWorkers={this.props.freeWorkers}
+                    levelUpCost={this.props.stats.levelUpCost ? this.props.stats.levelUpCost : 0}
+                    money={this.props.money ? this.props.money : 0}
                     >
                 </WoodCuttersDialog>
             </div>
@@ -38,16 +39,18 @@ class WoodCuttersDialog extends React.Component {
         return (
             <WorkplaceModalDialog id={WOOD_CUTTER_MODAL}
                                   title="Edit wood-cutter"
-                /*levelUpCondition={this.props.stats ? this.props.stats.levelUpCondition : {}}*/
+                                  levelUpCost={this.props.levelUpCost ? this.props.levelUpCost : 0}
+                                  money={this.props.money ? this.props.money : 0}
                 /*performance={this.props.stats ? this.props.stats.performance : {}}*/
                                   level={this.props.stats ? this.props.stats.buildinglevel : 0}
                                   workers={this.props.stats ? this.props.stats.amountDedicatedWorkers : 0}
                                   updateWorkplaceHandler={this.props.updateWorkplaceHandler ? this.props.updateWorkplaceHandler : () => {
                                   }}
-
                                   shortName={"woodcutters"}
                                   freeWorkers={this.props.freeWorkers}
-
+                                  woodPerMinute={this.props.woodPerMinute ? this.props.woodPerMinute : 0}
+                                  coalPerMinute={this.props.coalPerMinute ? this.props.coalPerMinute : 0}
+                                  ironOrePerMinute={this.props.ironOrePerMinute ? this.props.ironOrePerMinute : 0}
 
             >
 

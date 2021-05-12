@@ -8,8 +8,7 @@ export class AuthService {
         const result = await this.httpService.ajax("POST", "/token-auth/", {username: userName, password: pwd});
         
         if (result.token) {
-            alert("Loged in with token: " + result.token);
-            console.log(result.token)
+            console.log(result.token);
             this.httpService.setAuthToken(result.token);
             return result.token;
         } else {
@@ -17,7 +16,6 @@ export class AuthService {
             this.httpService.setAuthToken(); //dont login
             return null;
         }
-        
     }
 
     logout() {

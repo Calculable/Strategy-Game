@@ -12,12 +12,16 @@ class Gameboard extends React.Component {
         return (
             <div className="board">
                 <WoodCutters stats={this.props.workplaceStats.woodcutters}
-                             freeWorkers={this.props.workplaceStats.townhall.amountWorkersOwned}
-                             updateWorkplaceHandler={this.props.updateWorkplaceHandler}></WoodCutters>
+                             freeWorkers={this.props.workplaceStats.townhall.amountWorkersFree}
+                             updateWorkplaceHandler={this.props.updateWorkplaceHandler}
+                            money={this.props.money}>
+                </WoodCutters>
 
                 <Mine stats={this.props.workplaceStats.mine}
-                      freeWorkers={this.props.workplaceStats.townhall.amountWorkersOwned}
-                      updateWorkplaceHandler={this.props.updateWorkplaceHandler}></Mine>
+                      freeWorkers={this.props.workplaceStats.townhall.amountWorkersFree}
+                      updateWorkplaceHandler={this.props.updateWorkplaceHandler}
+                      money={this.props.money}>
+                </Mine>
 
                 {/*<StoneMine stats={this.props.workplaceStats.stoneMine}
                            resourceStats={this.props.resourceStats}

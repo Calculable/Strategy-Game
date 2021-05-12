@@ -34,18 +34,28 @@ export class FakeApiService {
                 "woodcutters":{
                     "amountWood":0,
                     "amountDedicatedWorkers":0,
-                    "buildinglevel":1
+                    "buildinglevel":1,
+                    "levelUpCost": 5.0,
+                    "woodPerMinute": 0.0,
+                    "woodSellPrice": 1,
                 },
                 "mine":{
                     "amountCoal":0,
                     "amountIronOre":0,
                     "amountDedicatedWorkers":0,
-                    "buildinglevel":1
+                    "buildinglevel":1,
+                    "levelUpCost": 5.0,
+                    "coalPerMinute": 0.0,
+                    "ironOrePerMinute": 0.0,
+                    "coalSellPrice": 1,
+                    "ironOreSellPrice": 2
                 },
                 "townhall":{
-                    "amountWorkersOwned":2,
+                    "amountWorkersFree":2,
                     "money":100,
-                    "buildinglevel":1
+                    "buildinglevel":1,
+                    "levelUpCost": 10,
+                    "workerCost": 100
                 },
                 "armyCenter":{
                     "amountArchers":0,
@@ -111,5 +121,3 @@ export class FakeApiService {
         return Math.floor(Math.random() * 1000) + 1;
     }
 }
-
-export const fakeApiService = new FakeApiService();

@@ -5,7 +5,6 @@ export class ApiService {
         this.httpService = httpService;
     }
 
-
     /*async getRessourceStats() {
         return Promise.resolve({
             materials: {
