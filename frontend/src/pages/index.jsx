@@ -17,7 +17,7 @@ class MainPage extends React.Component {
         super(props);
 
 
-        this.apiService = new ApiService(httpService);
+        this.apiService = new FakeApiService(httpService);
         this.loginService = new LoginService(httpService);
 
         this.state = {
@@ -75,7 +75,11 @@ class MainPage extends React.Component {
                     }
                     {!this.state.showGameboard &&
                     <div>
-                        <h1>Hey there! Welcome to Strategy Game</h1>
+                        <h1 className="display-1">
+                            Say hello to Strategy Game
+                            <br/>
+                            <small className={"lead"}><mark>- a.k.a the game without a name -</mark></small></h1>
+
                         <LoginForm loginHandler={this.loginHandler}></LoginForm>
                     </div>
                     }

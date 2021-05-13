@@ -6,7 +6,7 @@ export class UiController {
     constructor(uiComponent, httpService) {
         this.uiComponent = uiComponent;
 
-        this.apiService = new ApiService(httpService);
+        this.apiService = new FakeApiService(httpService);
 
     }
 

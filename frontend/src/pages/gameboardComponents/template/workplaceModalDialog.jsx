@@ -17,7 +17,7 @@ class WorkplaceModalDialog extends React.Component {
                 <div className="form-group">
                     <label>
                         <h6>Worker: <span
-                            className="badge badge-secondary">{this.props.workers ? this.props.workers : ""}</span>
+                            className="badge bg-secondary">{this.props.workers ? this.props.workers : ""}</span>
                         </h6>
 
                                     <input type="number" min="0" className="form-control"
@@ -46,13 +46,13 @@ class WorkplaceModalDialog extends React.Component {
                     <h6 className="mt-3">Current Performance</h6>
 
                     {(this.props.woodPerMinute > 0) &&
-                    <span className="badge badge-info mr-1">+ {this.props.woodPerMinute}x Wood</span>}
+                    <span className="badge bg-info mr-1">+ {this.props.woodPerMinute}x Wood</span>}
                     {(this.props.coalPerMinute > 0) &&
-                    <span className="badge badge-info mr-1">+ {this.props.coalPerMinute}x Coal</span>}
+                    <span className="badge bg-info mr-1">+ {this.props.coalPerMinute}x Coal</span>}
                     {(this.props.ironOrePerMinute > 0) &&
-                    <span className="badge badge-info mr-1">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
+                    <span className="badge bg-info mr-1">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
 
-                    <span> per </span> <span className="badge badge-secondary"> minute </span>
+                    <span> per minute </span>
                 </div>
                 }
 

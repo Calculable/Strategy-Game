@@ -13,7 +13,7 @@ class LevelUpgrader extends React.Component {
             <div>
 
                 <h6 className="mt-3">Level: <span
-                    className="badge badge-secondary">{this.props.level ? this.props.level : ""}</span></h6>
+                    className="badge bg-secondary">{this.props.level ? this.props.level : ""}</span></h6>
 
                 {(this.props.levelUpCost <= this.props.money) &&
                 <button type="button" className="btn btn-outline-secondary mt-1"
@@ -29,7 +29,7 @@ class LevelUpgrader extends React.Component {
                 <br/>
 
                 {(this.props.levelUpCost < this.props.money) &&
-                <span className="badge badge-danger mr-1">- {this.props.levelUpCost}x Money</span>}
+                <span className="badge bg-danger mr-1">- {this.props.levelUpCost}x Money</span>}
             </div>
         );
     }

@@ -17,8 +17,8 @@ class Workplace extends React.Component {
 
 
                 {!this.props.buttonDisabled &&
-                <button type="button" className="btn btn-secondary" data-toggle="modal"
-                        data-target={this.props.modalTarget}>
+                <button type="button" className="btn btn-secondary" data-bs-toggle="modal"
+                        data-bs-target={this.props.modalTarget}>
                     {this.props.buttonText}
                 </button>
                 }
@@ -34,13 +34,7 @@ class Workplace extends React.Component {
                 }
 
 
-                {/*
-                {this.props.workers &&
-                <p className={"worker-display"}><strong><span>Worker</span></strong>: <span
-                    className="badge badge-light">{this.props.workers}</span></p>
-                }
 
-                */}
             </div>
         );
     }

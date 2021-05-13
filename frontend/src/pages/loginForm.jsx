@@ -6,7 +6,7 @@ class LoginForm extends React.Component {
             <main role="main" className="container">
                 <form id="login-form" className="text-center form-signin" action="/play.html"
                       onSubmit={this.props.loginHandler}>
-                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    {/*<h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>*/}
                     <label htmlFor="username-input" className="sr-only">Email address</label>
                     <input type="text" id="username-input" className="form-control" defaultValue="demo_user" required
                            autoFocus/>

@@ -31,7 +31,6 @@ h1 {
     width: 100vw;
     padding: 0.5em;
     text-align: center;
-    background: #1E2940;
 }
 
 .building {
@@ -62,6 +61,21 @@ h1 {
     text-align: center;
 }
 
+/*
+.woodcutter, .army-center, .townhall, .mine  {
+    background: #F23D7F;
+    color: white;
+}
+
+.woodcutter .bi, .army-center .bi, .townhall .bi, .mine .bi {
+    color: white;
+}
+
+.woodcutter button, .army-center button, .townhall button, .mine button {
+    background: white;
+    color: black;
+}
+*/
 
 @media screen and (min-width: 786px) {
     .board {

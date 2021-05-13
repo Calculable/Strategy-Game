@@ -12,7 +12,7 @@ class ArmyCenter extends React.Component {
         return (
             <div>
                 <Workplace
-                    className="armyCenter"
+                    className="army-center"
                     displayName={"Army Center"}
                     icon={"bi bi-shield"}
                     buttonText={"Manage Army"}
