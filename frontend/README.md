@@ -2,7 +2,7 @@
 
 ## Description
 
-Dockerized React-Frontend for the Groupproject in "Distributed Systems" @ Fachhochschule OST
+Dockerized React-Frontend for the Challenge-Task in "Distributed Systems" @ Fachhochschule OST
 
 ## About
 
@@ -18,6 +18,15 @@ The frontend uses the following technologies:
 - JWT Token
 - normalize.css
 - jQuery
+
+## Current Version of NPM Libraries
+
+The Tool `npm-check` was used to validate that all libraries are installed with their newest version.
+
+This screenshot shows `npm-check` before updating the libraries.
+![](documentation/version-check.png)
+
+The libraries-Version were last checked on Mai 13 2021, 16:00 
 
 ## Screenshots / Responsive Layout
 
