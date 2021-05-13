@@ -27,7 +27,7 @@ class TradeOption extends React.Component {
 
                 {(this.state.selectedAmount > this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
                 <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
-                        disabled>Not enough {this.props.title} available</button>
+                        disabled>Not enough {this.props.titleSell} available</button>
                 }
 
                 {(this.state.selectedAmount % this.props.step != 0) &&
