@@ -1,5 +1,4 @@
 import React from "react";
-import WorkplaceModalDialog from "./workplaceModalDialog";
 
 class LevelUpgrader extends React.Component {
     constructor(props) {

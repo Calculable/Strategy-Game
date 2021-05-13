@@ -1,9 +1,6 @@
 import React from 'react'
 import WoodCutters from "./gameboardComponents/woodCutters";
-import StoneMine from "./gameboardComponents/stoneMine";
 import Mine from "./gameboardComponents/mine";
-import FishermansSquare from "./gameboardComponents/fishermansSquare";
-import Cornfield from "./gameboardComponents/cornfield";
 import TownHall from "./gameboardComponents/townHall";
 import ArmyCenter from "./gameboardComponents/armyCenter";
 
@@ -17,7 +14,7 @@ class Gameboard extends React.Component {
                 <WoodCutters stats={this.props.workplaceStats.woodcutters}
                              freeWorkers={this.props.workplaceStats.townhall.amountWorkersFree}
                              updateWorkplaceHandler={this.props.updateWorkplaceHandler}
-                            money={this.props.money}>
+                             money={this.props.money}>
                 </WoodCutters>
 
                 <Mine stats={this.props.workplaceStats.mine}
@@ -33,7 +30,7 @@ class Gameboard extends React.Component {
                 </TownHall>
 
                 <ArmyCenter stats={this.props.workplaceStats.armyCenter}
-                          resources={this.props.workplaceStats.resources}
+                            resources={this.props.workplaceStats.resources}
                             buyAndSellArmyHandler={this.props.buyAndSellArmyHandler}>
                 </ArmyCenter>
 

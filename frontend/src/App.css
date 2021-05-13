@@ -88,6 +88,7 @@ h1 {
 .form-group h6 {
     margin-top: 16pt;
 }
+
 @media screen and (min-width: 786px) {
     .board {
         grid-template-columns: repeat(2, 1fr);

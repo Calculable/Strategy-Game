@@ -14,7 +14,7 @@ export class LoginService {
 
         //await this.authService.login(usernameInput.value, passwordInput.value); //comment in when /login Endpoint exists
         //return this.authService.isLoggedIn();
-        
-       return true;
+
+        return true;
     }
 }

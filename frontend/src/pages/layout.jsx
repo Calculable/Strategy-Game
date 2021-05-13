@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
-import {FakeApiService} from "../services/fake-api-service";
 import {httpService} from "../services/http-service";
-import {LoginService} from "../services/login-service";
-import {UiController} from "../services/ui-controller";
 import {AuthService} from "../services/auth-service";
 
 class Layout extends Component {
@@ -50,8 +47,6 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <a className="nav-link" href="#" onClick={this.props.logoutHandler}>Logout</a>
                                 </li>
-
-
 
 
                             </ul>

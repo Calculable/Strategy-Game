@@ -20,10 +20,10 @@ class WorkplaceModalDialog extends React.Component {
                             className="badge bg-secondary">{this.props.workers ? this.props.workers : ""}</span>
                         </h6>
 
-                                    <input type="number" min="0" className="form-control"
-                                           value={this.state.assignedWorkers}
-                                           onChange={this.handleAssignedWorkerChange.bind(this)}/>
-                                </label>
+                        <input type="number" min="0" className="form-control"
+                               value={this.state.assignedWorkers}
+                               onChange={this.handleAssignedWorkerChange.bind(this)}/>
+                    </label>
 
 
                     {(this.state.assignedWorkers <= (this.props.freeWorkers + this.props.workers)) &&
@@ -38,7 +38,8 @@ class WorkplaceModalDialog extends React.Component {
 
                 </div>
 
-                <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.money} levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
+                <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.money}
+                               levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
 
 
                 {(this.state.assignedWorkers > 0) &&

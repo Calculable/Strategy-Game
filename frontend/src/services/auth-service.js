@@ -6,7 +6,7 @@ export class AuthService {
 
     async login(userName, pwd) {
         const result = await this.httpService.ajax("POST", "/token-auth/", {username: userName, password: pwd});
-        
+
         if (result.token) {
             console.log(result.token);
             this.httpService.setAuthToken(result.token);

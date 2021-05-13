@@ -22,7 +22,8 @@ class TradeOption extends React.Component {
 
                 {(this.state.selectedAmount <= this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
                 <button type="button" className="btn btn-outline-secondary ml-1 set-button"
-                        onClick={this.sellHandler.bind(this)}>Sell for {this.state.selectedAmount*this.props.sellPrice} {this.props.titleGet}!</button>
+                        onClick={this.sellHandler.bind(this)}>Sell
+                    for {this.state.selectedAmount * this.props.sellPrice} {this.props.titleGet}!</button>
                 }
 
                 {(this.state.selectedAmount > this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&

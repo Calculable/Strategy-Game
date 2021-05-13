@@ -27,7 +27,7 @@ class WoodCutters extends React.Component {
                     freeWorkers={this.props.freeWorkers}
                     levelUpCost={this.props.stats.levelUpCost ? this.props.stats.levelUpCost : 0}
                     money={this.props.money ? this.props.money : 0}
-                    >
+                >
                 </WoodCuttersDialog>
             </div>
         );

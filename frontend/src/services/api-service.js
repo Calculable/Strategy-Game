@@ -1,5 +1,4 @@
 //Contains Dummy-Methods to be replaced by API-Calls later
-import ResourceCounter from "../pages/resourceCounter";
 import React from "react";
 
 export class ApiService {

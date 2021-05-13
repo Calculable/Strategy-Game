@@ -8,7 +8,6 @@ import LoginForm from "./loginForm";
 import ResourceCounter from "./resourceCounter";
 import Gameboard from "./gameboard";
 import {httpService} from "../services/http-service";
-import {ApiService} from "../services/api-service";
 import {FakeApiService} from "../services/fake-api-service";
 
 class MainPage extends React.Component {
@@ -37,23 +36,21 @@ class MainPage extends React.Component {
         e.preventDefault();
         let loginSuccessful = await this.loginService.submitLogin();
 
-            if (loginSuccessful) {
+        if (loginSuccessful) {
 
-                //let resourceStats = await this.apiService.getRessourceStats();
-                let workplaceStats = await this.apiService.getWorkplaceStats();
+            //let resourceStats = await this.apiService.getRessourceStats();
+            let workplaceStats = await this.apiService.getWorkplaceStats();
 
-                this.setState({
-                    workplaceStats: workplaceStats,
-                    showGameboard: true
-                    //resourceStats: resourceStats,
+            this.setState({
+                workplaceStats: workplaceStats,
+                showGameboard: true
+                //resourceStats: resourceStats,
 
-                });
-            } else {
-                //alert("Login failed");
-            }
+            });
+        } else {
+            //alert("Login failed");
         }
-
-
+    }
 
 
     render() {
@@ -62,7 +59,8 @@ class MainPage extends React.Component {
                 <Layout>
                     {this.state.showGameboard &&
                     <div>
-                        <ResourceCounter resources={this.state.workplaceStats.resources} armyCenter={this.state.workplaceStats.armyCenter}></ResourceCounter>
+                        <ResourceCounter resources={this.state.workplaceStats.resources}
+                                         armyCenter={this.state.workplaceStats.armyCenter}></ResourceCounter>
 
                         <Gameboard workplaceStats={this.state.workplaceStats}
                                    sellPrice={this.state.workplaceStats.sellPrice}
@@ -78,7 +76,9 @@ class MainPage extends React.Component {
                         <h1 className="display-1">
                             Say hello to Strategy Game
                             <br/>
-                            <small className={"lead"}><mark>- a.k.a the game without a name -</mark></small></h1>
+                            <small className={"lead"}>
+                                <mark>- a.k.a the game without a name -</mark>
+                            </small></h1>
 
                         <LoginForm loginHandler={this.loginHandler}></LoginForm>
                     </div>
