@@ -39,9 +39,7 @@ h1 {
     margin: 1em;
     padding: 1em;
     color: white;
-    background: #241FA6;
 }
-
 
 .building > .building-icon {
     font-size: 10vw;
@@ -61,21 +59,10 @@ h1 {
     text-align: center;
 }
 
-/*
+
 .woodcutter, .army-center, .townhall, .mine  {
-    background: #F23D7F;
-    color: white;
+    background: #241FA6;;
 }
-
-.woodcutter .bi, .army-center .bi, .townhall .bi, .mine .bi {
-    color: white;
-}
-
-.woodcutter button, .army-center button, .townhall button, .mine button {
-    background: white;
-    color: black;
-}
-*/
 
 .resource-item {
     margin-left: 0.5em;

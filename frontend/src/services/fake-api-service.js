@@ -4,31 +4,7 @@ export class FakeApiService {
         this.httpService = httpService;
     }
 
-
-    /*async getRessourceStats() {
-        return Promise.resolve({
-            materials: {
-                wood: this.randomRessourceCount(),
-                iron: this.randomRessourceCount(),
-                stone: this.randomRessourceCount(),
-                gold: this.randomRessourceCount(),
-                diamond: this.randomRessourceCount()
-            },
-            freeWorkers: this.randomWorkerCount()
-        });
-    }*/
-
-
     async getWorkplaceStats() {
-        /*return Promise.resolve({
-            woodCutter: this.getRandomWorkplaceStats(),
-            stoneMine: this.getRandomWorkplaceStats(),
-            coalMine: this.getRandomWorkplaceStats(),
-            fisherSquare: this.getRandomWorkplaceStats(),
-            cornfield: this.getRandomWorkplaceStats(),
-        });
-    }*/
-
         return Promise.resolve(
             {
                 "woodcutters": {
@@ -94,53 +70,12 @@ export class FakeApiService {
         });
     }
 
-
     async updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel) {
         return Promise.resolve();
     }
 
     async updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
         return Promise.resolve();
-    }
-
-    /*Helper Functions*/
-    getRandomWorkplaceStats() {
-        return {
-            level: this.randomLevel(),
-            levelUpCondition: {
-                wood: this.randomRessourceCount(),
-                iron: this.randomRessourceCount(),
-                stone: this.randomRessourceCount(),
-                gold: this.randomRessourceCount(),
-                diamond: this.randomRessourceCount(),
-            },
-            worker: this.randomWorkerCount(),
-            progress: this.randomNumberProgress(),
-            performance: {
-                timeInMinutes: 5,
-                wood: this.randomRessourceCount(),
-                iron: this.randomRessourceCount(),
-                stone: this.randomRessourceCount(),
-                gold: this.randomRessourceCount(),
-                diamond: this.randomRessourceCount(),
-            },
-        };
-    }
-
-    randomLevel() {
-        return Math.floor(Math.random() * 10) + 1;
-    }
-
-    randomWorkerCount() {
-        return Math.floor(Math.random() * 10) + 1;
-    }
-
-    randomNumberProgress() {
-        return Math.floor(Math.random() * 100) + 1;
-    }
-
-    randomRessourceCount() {
-        return Math.floor(Math.random() * 1000) + 1;
     }
 
 }

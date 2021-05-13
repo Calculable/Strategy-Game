@@ -1,4 +1,4 @@
-/*Aus WED2 (keine Eigenleistung)*/
+/*Teilweis aus dem Modul WED2 von Markus Stolze (keine Eigenleistung)*/
 
 import {valueStorage} from './value-storage.js'
 

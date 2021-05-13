@@ -5,8 +5,6 @@ import TownHall from "./gameboardComponents/townHall";
 import ArmyCenter from "./gameboardComponents/armyCenter";
 
 class Gameboard extends React.Component {
-
-
     render() {
         return (
             <div className="board">
@@ -34,18 +32,6 @@ class Gameboard extends React.Component {
                             buyAndSellArmyHandler={this.props.buyAndSellArmyHandler}>
                 </ArmyCenter>
 
-                {/*<StoneMine stats={this.props.workplaceStats.stoneMine}
-                           resourceStats={this.props.resourceStats}
-                           assignWorkerHandler={this.props.assignWorkerHandler}
-                           levelUpHandler={this.props.levelUpHandler}></StoneMine>
-                <FishermansSquare stats={this.props.workplaceStats.fisherSquare}
-                                  resourceStats={this.props.resourceStats}
-                                  assignWorkerHandler={this.props.assignWorkerHandler}
-                                  levelUpHandler={this.props.levelUpHandler}></FishermansSquare>
-                <Cornfield stats={this.props.workplaceStats.cornfield}
-                           resourceStats={this.props.resourceStats}
-                           assignWorkerHandler={this.props.assignWorkerHandler}
-                           levelUpHandler={this.props.levelUpHandler}></Cornfield>*/}
             </div>
         )
     }

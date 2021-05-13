@@ -16,8 +16,7 @@ class ArmyCenter extends React.Component {
                     buttonText={"Manage Army"}
                     buttonDisabled={false}
                     modalTarget={"#" + ARMY_CENTER_MODAL}
-                    level={this.props.stats ? this.props.stats.buildinglevel : 0}
-                >
+                    level={this.props.stats ? this.props.stats.buildinglevel : 0}>
                 </Workplace>
                 <ArmyCenterDialog
                     resources={this.props.resources ? this.props.resources : {}}
@@ -39,31 +38,24 @@ class ArmyCenter extends React.Component {
 
 class ArmyCenterDialog extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
 
             <div>
                 <ModalDialogTemplate id={ARMY_CENTER_MODAL} title="Army Center">
-                    {/*<LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.resources.money} levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>*/}
-
                     <TradeOption titleSell={"Money"} titleGet={"Archers"} maxAmount={this.props.resources.money}
                                  sellPrice={1 / this.props.buyArmyPrice.archers} selectedAmount="0"
                                  sellHandler={this.buyArcherHandler.bind(this)}
                                  step={this.props.buyArmyPrice.archers}></TradeOption>
                     <TradeOption titleSell={"Money"} titleGet={"Blockers"} maxAmount={this.props.resources.money}
                                  sellPrice={1 / this.props.buyArmyPrice.blockers} selectedAmount="0"
-                                 sellHandler={this.buyArcherHandler.bind(this)}
+                                 sellHandler={this.buyBlockerHandler.bind(this)}
                                  step={this.props.buyArmyPrice.blockers}></TradeOption>
                     <TradeOption titleSell={"Money"} titleGet={"Swordsman"} maxAmount={this.props.resources.money}
                                  sellPrice={1 / this.props.buyArmyPrice.swordsman} selectedAmount="0"
-                                 sellHandler={this.buyArcherHandler.bind(this)}
+                                 sellHandler={this.buySowrdsmanHandler.bind(this)}
                                  step={this.props.buyArmyPrice.swordsman}></TradeOption>
                 </ModalDialogTemplate>
-
             </div>
         );
     }
@@ -83,8 +75,6 @@ class ArmyCenterDialog extends React.Component {
     buySowrdsmanHandler(amountOfMoney) {
         this.props.buyAndSellArmyHandler(0, 0, amountOfMoney * (1 / this.props.buyArmyPrice.swordsman), this.props.level);
     }
-
-
 }
 
 

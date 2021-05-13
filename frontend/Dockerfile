@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16.1
 
 RUN mkdir /app
 RUN groupadd -r front

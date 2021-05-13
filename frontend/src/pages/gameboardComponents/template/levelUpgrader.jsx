@@ -8,7 +8,6 @@ class LevelUpgrader extends React.Component {
 
     render() {
         return (
-
             <div>
 
                 <h6 className="mt-3">Level: <span

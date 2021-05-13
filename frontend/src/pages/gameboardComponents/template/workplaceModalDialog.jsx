@@ -10,10 +10,8 @@ class WorkplaceModalDialog extends React.Component {
     }
 
     render() {
-
         return (
             <ModalDialogTemplate id={this.props.id} title={this.props.title}>
-
                 <div className="form-group">
                     <label>
                         <h6>Worker: <span
@@ -25,7 +23,6 @@ class WorkplaceModalDialog extends React.Component {
                                onChange={this.handleAssignedWorkerChange.bind(this)}/>
                     </label>
 
-
                     {(this.state.assignedWorkers <= (this.props.freeWorkers + this.props.workers)) &&
                     <button type="button" className="btn btn-outline-secondary set-button"
                             onClick={this.assignWorkers.bind(this)}>Set</button>
@@ -35,12 +32,10 @@ class WorkplaceModalDialog extends React.Component {
                     <button type="button" className="btn btn-outline-secondary ml-1 btn-warning set-button"
                             disabled>Not enough workers</button>
                     }
-
                 </div>
 
                 <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.money}
                                levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
-
 
                 {(this.state.assignedWorkers > 0) &&
                 <div>
@@ -51,7 +46,6 @@ class WorkplaceModalDialog extends React.Component {
                     <span className="badge bg-info mr-1 resource-item">+ {this.props.coalPerMinute}x Coal</span>}
                     {(this.props.ironOrePerMinute > 0) &&
                     <span className="badge bg-info mr-1 resource-item">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
-
                     <span> per minute </span>
                 </div>
                 }
@@ -67,7 +61,6 @@ class WorkplaceModalDialog extends React.Component {
 
     levelUp() {
         this.props.updateWorkplaceHandler(this.props.shortName, this.props.workers, this.props.level + 1);
-
     }
 
     assignWorkers() {

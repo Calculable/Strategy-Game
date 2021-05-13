@@ -9,26 +9,24 @@ import ResourceCounter from "./resourceCounter";
 import Gameboard from "./gameboard";
 import {httpService} from "../services/http-service";
 import {FakeApiService} from "../services/fake-api-service";
+import {ApiService} from "../services/api-service";
 
 class MainPage extends React.Component {
 
     constructor(props) {
         super(props);
 
-
-        this.apiService = new FakeApiService(httpService);
+        this.apiService = new ApiService(httpService);
         this.loginService = new LoginService(httpService);
 
         this.state = {
             showGameboard: false,
-            //resourceStats: this.apiService.getRessourceStats(),
-            //workplaceStats: this.apiService.getWorkplaceStats()
         };
+
         this.loginHandler = this.loginHandler.bind(this);
 
         this.uiController = new UiController(this, httpService);
         this.uiController.pollInformation(this);
-
     }
 
     async loginHandler(e) {
@@ -37,21 +35,13 @@ class MainPage extends React.Component {
         let loginSuccessful = await this.loginService.submitLogin();
 
         if (loginSuccessful) {
-
-            //let resourceStats = await this.apiService.getRessourceStats();
             let workplaceStats = await this.apiService.getWorkplaceStats();
-
             this.setState({
                 workplaceStats: workplaceStats,
                 showGameboard: true
-                //resourceStats: resourceStats,
-
             });
-        } else {
-            //alert("Login failed");
         }
     }
-
 
     render() {
         return (
@@ -68,7 +58,6 @@ class MainPage extends React.Component {
                                    buyAndSellHandler={this.uiController.buyAndSellHandler.bind(this.uiController)}
                                    buyAndSellArmyHandler={this.uiController.buyAndSellArmyHandler.bind(this.uiController)}
                                    money={this.state.workplaceStats.resources.money}></Gameboard>
-
                     </div>
                     }
                     {!this.state.showGameboard &&

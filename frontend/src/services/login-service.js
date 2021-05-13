@@ -12,9 +12,8 @@ export class LoginService {
         let usernameInput = document.getElementById("username-input");
         let passwordInput = document.getElementById("password-input");
 
-        //await this.authService.login(usernameInput.value, passwordInput.value); //comment in when /login Endpoint exists
-        //return this.authService.isLoggedIn();
-
-        return true;
+        await this.authService.login(usernameInput.value, passwordInput.value); //comment in when /login Endpoint exists
+        return this.authService.isLoggedIn();
+        //return true;
     }
 }

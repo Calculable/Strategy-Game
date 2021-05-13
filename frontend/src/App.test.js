@@ -12,7 +12,7 @@ describe("React", function () { //Fixture
 
     it('renders title', () => {
         render(<App/>);
-        const textElement = screen.getByText(/Welcome to Strategy Game/i);
+        const textElement = screen.getByText(/Say hello to Strategy Game/i);
         expect(textElement).toBeInTheDocument();
     });
 

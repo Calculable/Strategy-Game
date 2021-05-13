@@ -82,7 +82,6 @@ To start Test-Runner:
 Afterwards, press a to run all the tests
 
 ![Test-Output](documentation/tests.png)
-(Auf dem Screenshot ist nur ein Test zu sehen, später wurden weitere dazugefügt)
 
 ## User Interface with React
 
@@ -154,7 +153,6 @@ The ressources of a user are dependent on the time so we have to refresh the ui 
 ### Bootstrap Grid System vs. CSS Grid
 
 We display the types of buildings in a grid. As we already use Bootstrap we could have used the Boostrap Grid System to display the responsive grid but we decided to use the build-in CSS grid to be too more independant from bootstrap and because we thought that CSS Grid was easier to use for our use-case. 
-
 
 ### CSS Normalize vs. CSS Reset
 

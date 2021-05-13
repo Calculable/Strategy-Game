@@ -44,10 +44,6 @@ class TownHall extends React.Component {
 
 class TownHallDialog extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
 
@@ -56,7 +52,6 @@ class TownHallDialog extends React.Component {
                     <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost}
                                    money={this.props.resources.money}
                                    levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
-
                     <TradeOption titleSell={"Wood"} titleGet={"Money"} maxAmount={this.props.resources.amountWood}
                                  sellPrice={this.props.resourcesSellPrice.wood} selectedAmount="0"
                                  sellHandler={this.sellWoodHandler.bind(this)} step={1}></TradeOption>
