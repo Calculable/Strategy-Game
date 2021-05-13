@@ -62,11 +62,12 @@ class MainPage extends React.Component {
                 <Layout>
                     {this.state.showGameboard &&
                     <div>
-                        <ResourceCounter wood={this.state.workplaceStats.woodcutters.amountWood} coal={this.state.workplaceStats.mine.amountCoal} ironOre={this.state.workplaceStats.mine.amountIronOre} money={this.state.workplaceStats.townhall.money} workers={this.state.workplaceStats.townhall.amountWorkersFree}></ResourceCounter>
+                        <ResourceCounter resources={this.state.workplaceStats.resources}></ResourceCounter>
 
                         <Gameboard workplaceStats={this.state.workplaceStats}
                                    updateWorkplaceHandler={this.uiController.updateWorkplaceHandler.bind(this.uiController)}
-                                   money={this.state.workplaceStats.townhall.money}></Gameboard>
+                                   buyAndSellHandler={this.uiController.buyAndSellHandler.bind(this.uiController)}
+                                   money={this.state.workplaceStats.resources.money}></Gameboard>
 
                     </div>
                     }

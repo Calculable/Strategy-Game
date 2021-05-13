@@ -10,7 +10,7 @@ class Workplace extends React.Component {
                     <small>Level: {this.props.level}</small>
                     }
                     <br></br>
-                    {this.props.workers !== "" &&
+                    {this.props.workers !== undefined &&
                     <small>Arbeiter: {this.props.workers}</small>
                     }
                 </h1>

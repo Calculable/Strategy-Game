@@ -44,7 +44,7 @@ class Navbar extends Component {
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
                                     <a className="nav-link" href="/about">About</a>
-                                    <a className="nav-link" /*href="#"*/ onClick={this.props.logoutHandler}>Logout</a>
+                                    <a className="nav-link" href="#" onClick={this.props.logoutHandler}>Logout</a>
                                 </li>
                             </ul>
                         </div>

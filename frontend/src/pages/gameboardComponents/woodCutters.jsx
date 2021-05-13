@@ -38,7 +38,7 @@ class WoodCuttersDialog extends React.Component {
     render() {
         return (
             <WorkplaceModalDialog id={WOOD_CUTTER_MODAL}
-                                  title="Edit wood-cutter"
+                                  title="Edit Woodcutters"
                                   levelUpCost={this.props.levelUpCost ? this.props.levelUpCost : 0}
                                   money={this.props.money ? this.props.money : 0}
                 /*performance={this.props.stats ? this.props.stats.performance : {}}*/

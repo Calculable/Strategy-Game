@@ -1,4 +1,5 @@
 import React from 'react'
+import ModalDialogTemplate from "./modalDialogTemplate";
 
 class WorkplaceModalDialog extends React.Component {
 
@@ -10,18 +11,7 @@ class WorkplaceModalDialog extends React.Component {
     render() {
 
         return (
-            <div class="modal fade" id={this.props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{this.props.title}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
+            <ModalDialogTemplate id={this.props.id} title={this.props.title}>
 
                             <div className="form-group">
                                 <label>
@@ -68,25 +58,22 @@ class WorkplaceModalDialog extends React.Component {
                             <span className="badge badge-danger mr-1">- {this.props.levelUpCost}x Money</span>}
 
 
+                {(this.state.assignedWorkers > 0) &&
+                <div>
+                    <h6 className="mt-3">Current Performance</h6>
 
-                            <h6 className="mt-3">Current Performance</h6>
+                    {(this.props.woodPerMinute > 0) &&
+                    <span className="badge badge-info mr-1">+ {this.props.woodPerMinute}x Wood</span>}
+                    {(this.props.coalPerMinute > 0) &&
+                    <span className="badge badge-info mr-1">+ {this.props.coalPerMinute}x Coal</span>}
+                    {(this.props.ironOrePerMinute > 0) &&
+                    <span className="badge badge-info mr-1">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
 
-                            {(this.props.woodPerMinute > 0) &&
-                            <span className="badge badge-info mr-1">+ {this.props.woodPerMinute}x Wood</span>}
-                            {(this.props.coalPerMinute > 0) &&
-                            <span className="badge badge-info mr-1">+ {this.props.coalPerMinute}x Coal</span>}
-                            {(this.props.ironOrePerMinute > 0) &&
-                            <span className="badge badge-info mr-1">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
-
-                            <span> per </span> <span className="badge badge-secondary"> minute </span>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+                    <span> per </span> <span className="badge badge-secondary"> minute </span>
                 </div>
-            </div>
+                }
+
+            </ModalDialogTemplate>
 
         );
     }

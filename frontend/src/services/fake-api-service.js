@@ -32,28 +32,28 @@ export class FakeApiService {
         return Promise.resolve(
             {
                 "woodcutters":{
-                    "amountWood":0,
-                    "amountDedicatedWorkers":0,
+                    "amountWood":15,
+                    "amountDedicatedWorkers":1,
                     "buildinglevel":1,
                     "levelUpCost": 5.0,
-                    "woodPerMinute": 0.0,
+                    "woodPerMinute": 4.0,
                     "woodSellPrice": 1,
                 },
                 "mine":{
-                    "amountCoal":0,
-                    "amountIronOre":0,
-                    "amountDedicatedWorkers":0,
-                    "buildinglevel":1,
+                    "amountCoal":39,
+                    "amountIronOre":42,
+                    "amountDedicatedWorkers":5,
+                    "buildinglevel":2,
                     "levelUpCost": 5.0,
-                    "coalPerMinute": 0.0,
-                    "ironOrePerMinute": 0.0,
+                    "coalPerMinute": 6.0,
+                    "ironOrePerMinute": 7.0,
                     "coalSellPrice": 1,
                     "ironOreSellPrice": 2
                 },
                 "townhall":{
                     "amountWorkersFree":2,
                     "money":100,
-                    "buildinglevel":1,
+                    "buildinglevel":2,
                     "levelUpCost": 10,
                     "workerCost": 100
                 },
@@ -65,7 +65,15 @@ export class FakeApiService {
                     "amountSwordsman":0,
                     "swordsmanLevel":1,
                     "buildinglevel":1
+                },
+                resources: {
+                    amountWood: 15,
+                    amountCoal: 39,
+                    amountIronOre: 42,
+                    money: 100,
+                    workers: 2
                 }
+
             }
         );
 
@@ -120,4 +128,7 @@ export class FakeApiService {
     randomRessourceCount() {
         return Math.floor(Math.random() * 1000) + 1;
     }
+
 }
+
+export const fakeApiService = new FakeApiService(undefined);

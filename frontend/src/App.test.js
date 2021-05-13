@@ -111,41 +111,35 @@ describe("The Auth-Service", function () {
     describe("The API-Service", function () {
 
         let apiService;
-        let mockHttpService;
+        let spyHttpServiceAjax;
 
         beforeEach(function () {
 
             const httpServiceStub = {
                 ajax: (method, url, data, headers) => {
+                    return Promise.resolve(undefined);
                 }
             };
 
-            mockHttpService = sinon.mock(httpServiceStub);
+            spyHttpServiceAjax = sinon.spy(httpServiceStub.ajax);
             apiService = new ApiService(httpServiceStub);
         });
 
         it('uses httpService to getWorkplaceStats', () => {
-
-            mockHttpService.expects("ajax").withArgs("GET", "/api/buildingInformation/").once();
-
             return apiService.getWorkplaceStats().then(result => {
-                mockHttpService.verify();
+                spyHttpServiceAjax.calledWith("GET", "/api/buildingInformation/");
             });
         });
 
-
         it('uses httpService to updateWorkplace', () => {
-
-            mockHttpService.expects("ajax").withArgs("PUT", "/api/woodcutters", {
-                amountDedicatedWorkers: 1,
-                buildinglevel: 1,
-                //amountWood: 0,
-                //amountCoal: 0,
-                //amountIronOre: 0
-            }).once();
-
             return apiService.updateWorkplace("woodcutters", 1, 1).then(result => {
-                mockHttpService.verify();
+                spyHttpServiceAjax.calledWith("PUT", "/api/woodcutters", {
+                    amountDedicatedWorkers: 1,
+                    buildinglevel: 1,
+                    //amountWood: 0,
+                    //amountCoal: 0,
+                    //amountIronOre: 0
+                });
             });
         });
 

@@ -1,4 +1,7 @@
 //Contains Dummy-Methods to be replaced by API-Calls later
+import ResourceCounter from "../pages/resourceCounter";
+import React from "react";
+
 export class ApiService {
 
     constructor(httpService) {
@@ -19,7 +22,18 @@ export class ApiService {
     }*/
 
     async getWorkplaceStats() {
-        return this.httpService.ajax("GET", "/api/buildingInformation/");
+        let buildingInformation = await this.httpService.ajax("GET", "/api/buildingInformation/");
+
+        if (buildingInformation !== undefined) {
+            buildingInformation.resources = {
+                amountWood: buildingInformation.woodcutters.amountWood,
+                amountCoal: buildingInformation.mine.amountCoal,
+                amountIronOre: buildingInformation.mine.amountIronOre,
+                money: buildingInformation.townhall.money,
+                workers: buildingInformation.townhall.amountWorkersFree
+            };
+        }
+        return buildingInformation;
     }
 
 
