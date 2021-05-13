@@ -68,6 +68,7 @@ class MainPage extends React.Component {
                                    sellPrice={this.state.workplaceStats.sellPrice}
                                    updateWorkplaceHandler={this.uiController.updateWorkplaceHandler.bind(this.uiController)}
                                    buyAndSellHandler={this.uiController.buyAndSellHandler.bind(this.uiController)}
+                                   buyAndSellArmyHandler={this.uiController.buyAndSellArmyHandler.bind(this.uiController)}
                                    money={this.state.workplaceStats.resources.money}></Gameboard>
 
                     </div>

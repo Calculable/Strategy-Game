@@ -34,7 +34,7 @@ class Gameboard extends React.Component {
 
                 <ArmyCenter stats={this.props.workplaceStats.armyCenter}
                           resources={this.props.workplaceStats.resources}
-                          buyAndSellHandler={this.props.buyAndSellHandler}>
+                            buyAndSellArmyHandler={this.props.buyAndSellArmyHandler}>
                 </ArmyCenter>
 
                 {/*<StoneMine stats={this.props.workplaceStats.stoneMine}

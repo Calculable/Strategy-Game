@@ -3,6 +3,7 @@ import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
 import ModalDialogTemplate from "./template/modalDialogTemplate";
 import LevelUpgrader from "./template/levelUpgrader";
+import TradeOption from "./tradeOption";
 
 let ARMY_CENTER_MODAL = "armyCenterModal";
 
@@ -20,7 +21,14 @@ class ArmyCenter extends React.Component {
                     level={this.props.stats ? this.props.stats.buildinglevel : 0}
                 >
                 </Workplace>
-                <ArmyCenterDialog>
+                <ArmyCenterDialog
+                    resources={this.props.resources ? this.props.resources : {}}
+                    levelUpCost={this.props.stats.levelUpCost ? this.props.stats.levelUpCost : Number.POSITIVE_INFINITY}
+                    buyArmyPrice={{archers: this.props.stats.archerCost, blockers: this.props.stats.blockerCost, swordsman: this.props.stats.swordsmanCost}}
+                    buyAndSellArmyHandler={this.props.buyAndSellArmyHandler}
+                    stats={this.props.stats.armyCenter}
+                    level={this.props.stats.buildinglevel ? this.props.stats.buildinglevel : 0}
+                    >
                 </ArmyCenterDialog>
             </div>
         );
@@ -37,85 +45,38 @@ class ArmyCenterDialog extends React.Component {
         return (
 
             <div>
-            <ModalDialogTemplate id={ARMY_CENTER_MODAL} title="Army Center">
-                You can manage your army here (work in progress)
-            </ModalDialogTemplate>
+                <ModalDialogTemplate id={ARMY_CENTER_MODAL} title="Army Center">
+                    {/*<LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.resources.money} levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>*/}
+
+                    <TradeOption titleSell={"Money"} titleGet={"Archers"} maxAmount={this.props.resources.money} sellPrice={this.props.buyArmyPrice.archers} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.archers}></TradeOption>
+                    <TradeOption titleSell={"Money"} titleGet={"Blockers"} maxAmount={this.props.resources.money} sellPrice={this.props.buyArmyPrice.blockers} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.blockers}></TradeOption>
+                    <TradeOption titleSell={"Money"} titleGet={"Swordsman"} maxAmount={this.props.resources.money} sellPrice={this.props.buyArmyPrice.swordsman} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.swordsman}></TradeOption>
+
+                </ModalDialogTemplate>
 
             </div>
         );
     }
 
     levelUp() {
-        this.props.buyAndSellHandler(0, 0, 0, 0, this.props.level + 1);
+        this.props.buyAndSellHandler(0, 0, this.props.level + 1);
     }
 
-    sellWoodHandler(amountOfWood, buyAndSellHandler) {
-        buyAndSellHandler(amountOfWood, 0, 0, 0, this.props.level + 1);
+    buyArcherHandler(amountOfArcher) {
+        this.props.buyAndSellArmyHandler(amountOfArcher, 0, 0, this.props.level);
     }
 
-    sellCoalHandler(amountOfCoal, buyAndSellHandler) {
-        buyAndSellHandler(0, amountOfCoal, 0, 0, this.props.level + 1);
+    buyBlockerHandler(amountOfBlocker) {
+        this.props.buyAndSellArmyHandler(0, amountOfBlocker, 0, this.props.level);
     }
-    sellIronOreHandler(amountOfIronOre, buyAndSellHandler) {
-        buyAndSellHandler(0, 0, amountOfIronOre, 0, this.props.level + 1);
+    buySowrdsmanHandler(amountOfSwordsman) {
+        this.props.buyAndSellArmyHandler(0, 0, amountOfSwordsman, this.props.level);
     }
 
-    buyWorkerHandler(amountOfMoney, buyAndSellHandler) {
-        buyAndSellHandler(0, 0, 0, amountOfMoney*this.props.resourcesSellPrice.workerPerMoney, this.props.level + 1);
-    }
 
 }
 
-class SellingOption extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {selectedAmount: this.props.selectedAmount ? this.props.selectedAmount : 0};
-    }
-
-    render() {
-        return (
-
-            <div className="form-group">
-                <label>
-                    <h6>Trade <span>{this.props.titleSell} for {this.props.titleGet}</span></h6>
-
-                    <input type="number" min="0" max={this.props.maxAmount} className="form-control" step={this.props.step}
-                           value={this.state.selectedAmount}
-                           onChange={this.handleAmountChange.bind(this)}/>
-                </label>
-
-
-                {(this.state.selectedAmount <= this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
-                <button type="button" className="btn btn-outline-secondary ml-1"
-                        onClick={this.sellHandler.bind(this)}>Sell for {this.state.selectedAmount*this.props.sellPrice} {this.props.titleGet}!</button>
-                }
-
-                {(this.state.selectedAmount > this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
-                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
-                        disabled>Not enough {this.props.title} available</button>
-                }
-
-                {(this.state.selectedAmount % this.props.step != 0) &&
-                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
-                        disabled>Amount must be divisible by {this.props.step}</button>
-                }
-
-            </div>
-
-        );
-    }
-
-    handleAmountChange(e) {
-        this.setState({selectedAmount: e.target.value});
-    }
-
-    sellHandler() {
-        this.props.sellHandler(this.state.selectedAmount, this.props.buyAndSellHandler);
-        this.state.selectedAmount = 0;
-    }
-
-}
 
 
 export default ArmyCenter;

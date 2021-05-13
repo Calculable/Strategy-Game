@@ -3,6 +3,7 @@ import Workplace from "./template/workplace";
 import WorkplaceModalDialog from "./template/workplaceModalDialog";
 import ModalDialogTemplate from "./template/modalDialogTemplate";
 import LevelUpgrader from "./template/levelUpgrader";
+import TradeOption from "./tradeOption"
 
 let TOWNHALL_MODAL = "townhallModal";
 
@@ -29,7 +30,7 @@ class TownHall extends React.Component {
                         wood: this.props.sellPrice.wood,
                         coal: this.props.sellPrice.coal,
                         ironOre: this.props.sellPrice.ironOre,
-                        workerPerMoney: 1/this.props.sellPrice.worker
+                        workerPerMoney: (1/this.props.sellPrice.workers)
                     }}
                     level={this.props.stats ? this.props.stats.buildinglevel : 0}
                     levelUpCost={this.props.stats.levelUpCost ? this.props.stats.levelUpCost : 0}
@@ -55,10 +56,10 @@ class TownHallDialog extends React.Component {
             <ModalDialogTemplate id={TOWNHALL_MODAL} title="Townhall">
                 <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.resources.money} levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
 
-                <SellingOption titleSell={"Wood"} titleGet={"Money"} maxAmount={this.props.resources.amountWood} sellPrice={this.props.resourcesSellPrice.wood} selectedAmount="0" sellHandler={this.sellWoodHandler.bind(this)} step={1}></SellingOption>
-                <SellingOption titleSell={"Coal"} titleGet={"Money"} maxAmount={this.props.resources.amountCoal} sellPrice={this.props.resourcesSellPrice.coal} selectedAmount="0" sellHandler={this.sellCoalHandler.bind(this)} step={1}></SellingOption>
-                <SellingOption titleSell={"Iron Ore"} titleGet={"Money"} maxAmount={this.props.resources.amountIronOre} sellPrice={this.props.resourcesSellPrice.ironOre} selectedAmount="0" sellHandler={this.sellIronOreHandler.bind(this)} step={1}></SellingOption>
-                <SellingOption titleSell={"Money"} titleGet={"Workers"} maxAmount={this.props.resources.money} sellPrice={this.props.resourcesSellPrice.workerPerMoney} selectedAmount="0" sellHandler={this.buyWorkerHandler.bind(this)} step={1/this.props.resourcesSellPrice.workerPerMoney}></SellingOption>
+                <TradeOption titleSell={"Wood"} titleGet={"Money"} maxAmount={this.props.resources.amountWood} sellPrice={this.props.resourcesSellPrice.wood} selectedAmount="0" sellHandler={this.sellWoodHandler.bind(this)} step={1}></TradeOption>
+                <TradeOption titleSell={"Coal"} titleGet={"Money"} maxAmount={this.props.resources.amountCoal} sellPrice={this.props.resourcesSellPrice.coal} selectedAmount="0" sellHandler={this.sellCoalHandler.bind(this)} step={1}></TradeOption>
+                <TradeOption titleSell={"Iron Ore"} titleGet={"Money"} maxAmount={this.props.resources.amountIronOre} sellPrice={this.props.resourcesSellPrice.ironOre} selectedAmount="0" sellHandler={this.sellIronOreHandler.bind(this)} step={1}></TradeOption>
+                <TradeOption titleSell={"Money"} titleGet={"Workers"} maxAmount={this.props.resources.money} sellPrice={this.props.resourcesSellPrice.workerPerMoney} selectedAmount="0" sellHandler={this.buyWorkerHandler.bind(this)} step={1/this.props.resourcesSellPrice.workerPerMoney}></TradeOption>
 
             </ModalDialogTemplate>
 
@@ -83,57 +84,6 @@ class TownHallDialog extends React.Component {
 
     buyWorkerHandler(amountOfMoney) {
         this.props.buyAndSellHandler(0, 0, 0, amountOfMoney*this.props.resourcesSellPrice.workerPerMoney, this.props.level);
-    }
-
-}
-
-class SellingOption extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {selectedAmount: this.props.selectedAmount ? this.props.selectedAmount : 0};
-    }
-
-    render() {
-        return (
-
-            <div className="form-group">
-                <label>
-                    <h6>Trade <span>{this.props.titleSell} for {this.props.titleGet}</span></h6>
-
-                    <input type="number" min="0" max={this.props.maxAmount} className="form-control" step={this.props.step}
-                           value={this.state.selectedAmount}
-                           onChange={this.handleAmountChange.bind(this)}/>
-                </label>
-
-
-                {(this.state.selectedAmount <= this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
-                <button type="button" className="btn btn-outline-secondary ml-1"
-                        onClick={this.sellHandler.bind(this)}>Sell for {this.state.selectedAmount*this.props.sellPrice} {this.props.titleGet}!</button>
-                }
-
-                {(this.state.selectedAmount > this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
-                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
-                        disabled>Not enough {this.props.title} available</button>
-                }
-
-                {(this.state.selectedAmount % this.props.step != 0) &&
-                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
-                        disabled>Amount must be divisible by {this.props.step}</button>
-                }
-
-            </div>
-
-        );
-    }
-
-    handleAmountChange(e) {
-        this.setState({selectedAmount: e.target.value});
-    }
-
-    sellHandler() {
-        this.props.sellHandler(this.state.selectedAmount);
-        this.state.selectedAmount = 0;
     }
 
 }

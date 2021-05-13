@@ -68,7 +68,7 @@ export class ApiService {
     }
 
     async updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
-        return this.httpService.ajax("PUT", "/api/townhall", {
+        return this.httpService.ajax("PUT", "/api/armyCenter", {
             amountArchersToBuy: parseInt(amountArchersToBuy),
             amountBlockersToBuy: parseInt(amountBlockersToBuy),
             amountSwordsmanToBuy: parseInt(amountSwordsmanToBuy),

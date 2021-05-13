@@ -66,14 +66,19 @@ export class FakeApiService {
                     "swordsmanLevel":1,
                     "buildinglevel":1
                 },
-                resources: {
-                    amountWood: 15,
-                    amountCoal: 39,
-                    amountIronOre: 42,
-                    money: 100,
-                    workers: 2
+                "resources": {
+                    "amountWood": 15,
+                    "amountCoal": 39,
+                    "amountIronOre": 42,
+                    "money": 100,
+                    "workers": 2
+                },
+                "sellPrice": {
+                    "wood": 5,
+                    "coal": 5,
+                    "ironOre": 5,
+                    "workers": 5
                 }
-
             }
         );
 
@@ -89,6 +94,10 @@ export class FakeApiService {
 
 
     async updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel) {
+        return Promise.resolve();
+    }
+
+    async updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
         return Promise.resolve();
     }
 

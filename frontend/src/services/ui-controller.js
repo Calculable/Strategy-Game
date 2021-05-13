@@ -46,6 +46,10 @@ export class UiController {
         this.updateUI();
     }
 
+    async buyAndSellArmyHandler(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
+        await this.apiService.updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel);
+        this.updateUI();
+    }
 
 
 
