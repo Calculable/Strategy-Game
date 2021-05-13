@@ -48,10 +48,9 @@ class ArmyCenterDialog extends React.Component {
                 <ModalDialogTemplate id={ARMY_CENTER_MODAL} title="Army Center">
                     {/*<LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.resources.money} levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>*/}
 
-                    <TradeOption titleSell={"Money"} titleGet={"Archers"} maxAmount={this.props.resources.money} sellPrice={this.props.buyArmyPrice.archers} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.archers}></TradeOption>
-                    <TradeOption titleSell={"Money"} titleGet={"Blockers"} maxAmount={this.props.resources.money} sellPrice={this.props.buyArmyPrice.blockers} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.blockers}></TradeOption>
-                    <TradeOption titleSell={"Money"} titleGet={"Swordsman"} maxAmount={this.props.resources.money} sellPrice={this.props.buyArmyPrice.swordsman} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.swordsman}></TradeOption>
-
+                    <TradeOption titleSell={"Money"} titleGet={"Archers"} maxAmount={this.props.resources.money} sellPrice={1/this.props.buyArmyPrice.archers} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.archers}></TradeOption>
+                    <TradeOption titleSell={"Money"} titleGet={"Blockers"} maxAmount={this.props.resources.money} sellPrice={1/this.props.buyArmyPrice.blockers} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.blockers}></TradeOption>
+                    <TradeOption titleSell={"Money"} titleGet={"Swordsman"} maxAmount={this.props.resources.money} sellPrice={1/this.props.buyArmyPrice.swordsman} selectedAmount="0" sellHandler={this.buyArcherHandler.bind(this)} step={this.props.buyArmyPrice.swordsman}></TradeOption>
                 </ModalDialogTemplate>
 
             </div>
