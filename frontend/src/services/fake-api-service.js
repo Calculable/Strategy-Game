@@ -64,7 +64,10 @@ export class FakeApiService {
                     "blockerLevel":1,
                     "amountSwordsman":0,
                     "swordsmanLevel":1,
-                    "buildinglevel":1
+                    "buildinglevel":1,
+                    "archerCost":10,
+                    "blockerCost":15,
+                    "swordsmanCost":20
                 },
                 "resources": {
                     "amountWood": 15,

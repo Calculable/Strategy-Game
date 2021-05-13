@@ -11,7 +11,7 @@ class Workplace extends React.Component {
                     }
                     <br></br>
                     {this.props.workers !== undefined &&
-                    <small>Arbeiter: {this.props.workers}</small>
+                    <small>Worker: {this.props.workers}</small>
                     }
                 </h1>
 

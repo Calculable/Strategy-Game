@@ -21,17 +21,17 @@ class TradeOption extends React.Component {
 
 
                 {(this.state.selectedAmount <= this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
-                <button type="button" className="btn btn-outline-secondary ml-1"
+                <button type="button" className="btn btn-outline-secondary ml-1 set-button"
                         onClick={this.sellHandler.bind(this)}>Sell for {this.state.selectedAmount*this.props.sellPrice} {this.props.titleGet}!</button>
                 }
 
                 {(this.state.selectedAmount > this.props.maxAmount && (this.state.selectedAmount % this.props.step == 0)) &&
-                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
+                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning set-button"
                         disabled>Not enough {this.props.titleSell} available</button>
                 }
 
                 {(this.state.selectedAmount % this.props.step != 0) &&
-                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
+                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning set-button"
                         disabled>Amount must be divisible by {this.props.step}</button>
                 }
 

@@ -77,6 +77,17 @@ h1 {
 }
 */
 
+.resource-item {
+    margin-left: 0.5em;
+}
+
+.set-button {
+    margin-left: 4pt;
+}
+
+.form-group h6 {
+    margin-top: 16pt;
+}
 @media screen and (min-width: 786px) {
     .board {
         grid-template-columns: repeat(2, 1fr);

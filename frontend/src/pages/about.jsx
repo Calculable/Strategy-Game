@@ -6,8 +6,7 @@ const AboutPage = () => {
     return (
         <Layout>
             <div className="about-text m-3">
-                Dieses Spiel wurde im Frühlingssemester 2021 für das Modul "Distributed Systems and Blockchain
-                entwickelt"
+                This game was developed in the spring-semester 2021 for the module "Distributed Systems and Blockchain by Denis Nauli, Floris Staub and Jan Huber
             </div>
 
         </Layout>

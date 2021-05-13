@@ -27,12 +27,12 @@ class WorkplaceModalDialog extends React.Component {
 
 
                     {(this.state.assignedWorkers <= (this.props.freeWorkers + this.props.workers)) &&
-                    <button type="button" className="btn btn-outline-secondary ml-1"
+                    <button type="button" className="btn btn-outline-secondary set-button"
                             onClick={this.assignWorkers.bind(this)}>Set</button>
                     }
 
                     {(this.state.assignedWorkers > (this.props.freeWorkers + this.props.workers)) &&
-                    <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
+                    <button type="button" className="btn btn-outline-secondary ml-1 btn-warning set-button"
                             disabled>Not enough workers</button>
                     }
 
@@ -44,13 +44,12 @@ class WorkplaceModalDialog extends React.Component {
                 {(this.state.assignedWorkers > 0) &&
                 <div>
                     <h6 className="mt-3">Current Performance</h6>
-
                     {(this.props.woodPerMinute > 0) &&
-                    <span className="badge bg-info mr-1">+ {this.props.woodPerMinute}x Wood</span>}
+                    <span className="badge bg-info mr-1 resource-item">+ {this.props.woodPerMinute}x Wood</span>}
                     {(this.props.coalPerMinute > 0) &&
-                    <span className="badge bg-info mr-1">+ {this.props.coalPerMinute}x Coal</span>}
+                    <span className="badge bg-info mr-1 resource-item">+ {this.props.coalPerMinute}x Coal</span>}
                     {(this.props.ironOrePerMinute > 0) &&
-                    <span className="badge bg-info mr-1">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
+                    <span className="badge bg-info mr-1 resource-item">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
 
                     <span> per minute </span>
                 </div>
