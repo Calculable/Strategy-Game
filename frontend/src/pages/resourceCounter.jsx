@@ -11,6 +11,9 @@ class ResourceCounter extends React.Component {
                     <br/><br/>
                     Free Workers: <span className="badge badge-light">{this.props.resources.workers}</span>
                     <br/><br/>
+                    Archers (<i className={"bi bi-bullseye"}></i>): <span className="badge badge-info">{this.props.armyCenter.amountArchers}</span>
+                    , Blockers (<i className={"bi bi-bricks"}></i>): <span className="badge badge-info">{this.props.armyCenter.amountBlockers}</span>
+                    , Swordsman (<i className={"bi bi-cone"}></i>): <span className="badge badge-info">{this.props.armyCenter.amountSwordsman}</span>
                 </h5>
             </div>
         );

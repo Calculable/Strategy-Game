@@ -86,7 +86,10 @@ export class FakeApiService {
             });
     }
 
-    async getWoodcutterStats() {
+
+
+    async updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel) {
+        return Promise.resolve();
     }
 
     /*Helper Functions*/

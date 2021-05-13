@@ -38,10 +38,16 @@ export class UiController {
 
     async updateWorkplaceHandler(workplace, amountOfWorkers, level) {
         await this.apiService.updateWorkplace(workplace, amountOfWorkers, level);
+        this.updateUI();
     }
 
-    async buyAndSellHandler(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel) {
-        alert("Buy/Sell Clicked")
+    async buyAndSellHandler(amountWoodToSell=0, amountCoalToSell=0, amountIronOreToSell=0, amountWorkersToBuy=0, buildingLevel) {
+        await this.apiService.updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel);
+        this.updateUI();
     }
+
+
+
+
 
 }

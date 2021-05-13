@@ -5,6 +5,7 @@ import Mine from "./gameboardComponents/mine";
 import FishermansSquare from "./gameboardComponents/fishermansSquare";
 import Cornfield from "./gameboardComponents/cornfield";
 import TownHall from "./gameboardComponents/townHall";
+import ArmyCenter from "./gameboardComponents/armyCenter";
 
 class Gameboard extends React.Component {
 
@@ -27,8 +28,14 @@ class Gameboard extends React.Component {
 
                 <TownHall stats={this.props.workplaceStats.townhall}
                           resources={this.props.workplaceStats.resources}
-                          buyAndSellHandler={this.props.buyAndSellHandler}>
+                          buyAndSellHandler={this.props.buyAndSellHandler}
+                          sellPrice={this.props.sellPrice}>
                 </TownHall>
+
+                <ArmyCenter stats={this.props.workplaceStats.armyCenter}
+                          resources={this.props.workplaceStats.resources}
+                          buyAndSellHandler={this.props.buyAndSellHandler}>
+                </ArmyCenter>
 
                 {/*<StoneMine stats={this.props.workplaceStats.stoneMine}
                            resourceStats={this.props.resourceStats}

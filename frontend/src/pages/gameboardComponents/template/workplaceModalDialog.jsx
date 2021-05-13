@@ -1,5 +1,6 @@
 import React from 'react'
 import ModalDialogTemplate from "./modalDialogTemplate";
+import LevelUpgrader from "./levelUpgrader";
 
 class WorkplaceModalDialog extends React.Component {
 
@@ -13,49 +14,31 @@ class WorkplaceModalDialog extends React.Component {
         return (
             <ModalDialogTemplate id={this.props.id} title={this.props.title}>
 
-                            <div className="form-group">
-                                <label>
-                                    <h6>Worker: <span
-                                        className="badge badge-secondary">{this.props.workers ? this.props.workers : ""}</span>
-                                    </h6>
+                <div className="form-group">
+                    <label>
+                        <h6>Worker: <span
+                            className="badge badge-secondary">{this.props.workers ? this.props.workers : ""}</span>
+                        </h6>
 
-                                    <input type="number" min="0" max="100" className="form-control"
+                                    <input type="number" min="0" className="form-control"
                                            value={this.state.assignedWorkers}
                                            onChange={this.handleAssignedWorkerChange.bind(this)}/>
                                 </label>
 
 
+                    {(this.state.assignedWorkers <= (this.props.freeWorkers + this.props.workers)) &&
+                    <button type="button" className="btn btn-outline-secondary ml-1"
+                            onClick={this.assignWorkers.bind(this)}>Set</button>
+                    }
 
-                                 {(this.state.assignedWorkers <= (this.props.freeWorkers + this.props.workers)) &&
-                                <button type="button" className="btn btn-outline-secondary ml-1"
-                                        onClick={this.assignWorkers.bind(this)}>Set</button>
-                                }
+                    {(this.state.assignedWorkers > (this.props.freeWorkers + this.props.workers)) &&
+                    <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
+                            disabled>Not enough workers</button>
+                    }
 
-                                {(this.state.assignedWorkers > (this.props.freeWorkers + this.props.workers)) &&
-                                <button type="button" className="btn btn-outline-secondary ml-1 btn-warning"
-                                        disabled>Not enough workers</button>
-                                }
+                </div>
 
-                            </div>
-
-
-                            <h6 className="mt-3">Level: <span
-                                className="badge badge-secondary">{this.props.level ? this.props.level : ""}</span></h6>
-
-                            {(this.props.levelUpCost <= this.props.money) &&
-                                <button type="button" className="btn btn-outline-secondary mt-1"
-                                    onClick={this.levelUp.bind(this)}>Upgrade to
-                                Level {this.props.level ? this.props.level + 1 : ""}</button>
-                            }
-
-                            {(this.props.levelUpCost > this.props.money) &&
-                                    <button type="button" className="btn btn-outline-secondary mt-1 btn-warning" disabled>Not enough resources to upgrade to Level {this.props.level ? this.props.level + 1 : ""}</button>
-                            }
-
-                            <br/>
-
-                            {(this.props.levelUpCost < this.props.money) &&
-                            <span className="badge badge-danger mr-1">- {this.props.levelUpCost}x Money</span>}
+                <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost} money={this.props.money} levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
 
 
                 {(this.state.assignedWorkers > 0) &&

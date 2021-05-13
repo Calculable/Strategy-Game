@@ -32,6 +32,12 @@ export class ApiService {
                 money: buildingInformation.townhall.money,
                 workers: buildingInformation.townhall.amountWorkersFree
             };
+            buildingInformation.sellPrice = {
+                wood: buildingInformation.woodcutters.woodSellPrice,
+                coal: buildingInformation.mine.coalSellPrice,
+                ironOre: buildingInformation.mine.ironOreSellPrice,
+                workers: buildingInformation.townhall.workerCost
+            };
         }
         return buildingInformation;
     }
@@ -47,8 +53,27 @@ export class ApiService {
         });
     }
 
-    async getWoodcutterStats() {
+    /*async getWoodcutterStats() {
         return this.httpService.ajax("GET", "/api/woodcutters");
+    }*/
+
+    async updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel) {
+        return this.httpService.ajax("PUT", "/api/townhall", {
+            amountWoodToSell: parseInt(amountWoodToSell),
+            amountCoalToSell: parseInt(amountCoalToSell),
+            amountIronOreToSell: parseInt(amountIronOreToSell),
+            amountWorkersToBuy: parseInt(amountWorkersToBuy),
+            buildinglevel: parseInt(buildingLevel)
+        });
+    }
+
+    async updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
+        return this.httpService.ajax("PUT", "/api/townhall", {
+            amountArchersToBuy: parseInt(amountArchersToBuy),
+            amountBlockersToBuy: parseInt(amountBlockersToBuy),
+            amountSwordsmanToBuy: parseInt(amountSwordsmanToBuy),
+            buildinglevel: parseInt(buildingLevel)
+        });
     }
 
 }
