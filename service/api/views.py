@@ -42,7 +42,7 @@ def mineRequests(request):
                 return Response('Its not possible to go below zero workers', status=status.HTTP_400_BAD_REQUEST)
             if 'buildinglevel' in request.data and not (request.data['buildinglevel'] == currentMine.buildinglevel + 1 or request.data['buildinglevel'] == currentMine.buildinglevel):
                 return Response('Its not possible to skip levels', status=status.HTTP_400_BAD_REQUEST)
-            if 'buildinglevel' in request.data and currentTownhall.money < currentMine.getLevelupCost():
+            if 'buildinglevel' in request.data and request.data['buildinglevel'] == currentMine.buildinglevel + 1 and currentTownhall.money < currentMine.getLevelupCost():
                 return Response('Not enough money for level up', status=status.HTTP_400_BAD_REQUEST)
             
             if 'buildinglevel' in request.data and request.data['buildinglevel'] == currentMine.buildinglevel + 1:
@@ -92,7 +92,7 @@ def woodcuttersRequests(request):
                 return Response('Its not possible to go below zero workers', status=status.HTTP_400_BAD_REQUEST)
             if 'buildinglevel' in request.data and not (request.data['buildinglevel'] == currentWootcutter.buildinglevel + 1 or request.data['buildinglevel'] == currentWootcutter.buildinglevel):
                 return Response('Its not possible to skip levels', status=status.HTTP_400_BAD_REQUEST)
-            if 'buildinglevel' in request.data and currentTownhall.money < currentWootcutter.getLevelupCost():
+            if 'buildinglevel' in request.data and request.data['buildinglevel'] == currentWootcutter.buildinglevel + 1 and currentTownhall.money < currentWootcutter.getLevelupCost():
                 return Response('Not enough money for level up', status=status.HTTP_400_BAD_REQUEST)
             
             if 'buildinglevel' in request.data and request.data['buildinglevel'] == currentWootcutter.buildinglevel + 1:
@@ -170,7 +170,7 @@ def townhallRequests(request):
 
             if 'buildinglevel' in request.data and not (request.data['buildinglevel'] == currentTownhall.buildinglevel + 1 or request.data['buildinglevel'] == currentTownhall.buildinglevel):
                 return Response('Its not possible to skip levels', status=status.HTTP_400_BAD_REQUEST)
-            elif 'buildinglevel' in request.data and currentTownhall.money < currentTownhall.getLevelupCost():
+            elif 'buildinglevel' in request.data and request.data['buildinglevel'] == currentTownhall.buildinglevel + 1 and currentTownhall.money < currentTownhall.getLevelupCost():
                 return Response('Not enough money for level up', status=status.HTTP_400_BAD_REQUEST)
             elif 'buildinglevel' in request.data and request.data['buildinglevel'] == currentTownhall.buildinglevel + 1:
                 currentTownhall.money = currentTownhall.money - currentTownhall.getLevelupCost()
@@ -238,7 +238,7 @@ def armyCenterRequests(request):
 
             if 'buildinglevel' in request.data and not (request.data['buildinglevel'] == currentArmyCenter.buildinglevel + 1 or request.data['buildinglevel'] == currentArmyCenter.buildinglevel):
                 return Response('Its not possible to skip levels', status=status.HTTP_400_BAD_REQUEST)
-            elif 'buildinglevel' in request.data and currentTownhall.money < currentArmyCenter.getLevelupCost():
+            elif 'buildinglevel' in request.data and request.data['buildinglevel'] == currentArmyCenter.buildinglevel + 1 and currentTownhall.money < currentArmyCenter.getLevelupCost():
                 return Response('Not enough money for level up', status=status.HTTP_400_BAD_REQUEST)
             elif 'buildinglevel' in request.data and request.data['buildinglevel'] == currentArmyCenter.buildinglevel + 1:
                 currentTownhall.money = currentTownhall.money - currentArmyCenter.getLevelupCost()
