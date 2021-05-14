@@ -28,29 +28,30 @@ export class ApiService {
     }
 
 
-    async updateWorkplace(workplace, amountOfWorkers, level) {
+    async updateWorkplace(workplace, amountOfWorkers, level, shouldLevelUp=true) {
         return this.httpService.ajax("PUT", "/api/" + workplace, {
             amountDedicatedWorkers: amountOfWorkers,
-            buildinglevel: level,
+            buildinglevel: shouldLevelUp?level:undefined,
         });
     }
 
-    async updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel) {
+    async updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel, shouldLevelUp) {
         return this.httpService.ajax("PUT", "/api/townhall", {
             amountWoodToSell: parseInt(amountWoodToSell),
             amountCoalToSell: parseInt(amountCoalToSell),
             amountIronOreToSell: parseInt(amountIronOreToSell),
             amountWorkersToBuy: parseInt(amountWorkersToBuy),
-            buildinglevel: parseInt(buildingLevel)
+            buildinglevel: shouldLevelUp?parseInt(buildingLevel):undefined
         });
     }
 
-    async updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
+    async updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel, shouldLevelUp) {
         return this.httpService.ajax("PUT", "/api/armyCenter", {
             amountArchersToBuy: parseInt(amountArchersToBuy),
             amountBlockersToBuy: parseInt(amountBlockersToBuy),
             amountSwordsmanToBuy: parseInt(amountSwordsmanToBuy),
-            buildinglevel: parseInt(buildingLevel)
+            buildinglevel: shouldLevelUp?parseInt(buildingLevel):undefined
         });
     }
+
 }

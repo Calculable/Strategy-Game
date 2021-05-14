@@ -74,23 +74,23 @@ class TownHallDialog extends React.Component {
     }
 
     levelUp() {
-        this.props.buyAndSellHandler(0, 0, 0, 0, this.props.level + 1);
+        this.props.buyAndSellHandler(0, 0, 0, 0, this.props.level + 1, true);
     }
 
     sellWoodHandler(amountOfWood) {
-        this.props.buyAndSellHandler(amountOfWood, 0, 0, 0, this.props.level);
+        this.props.buyAndSellHandler(amountOfWood, 0, 0, 0, this.props.level, false);
     }
 
     sellCoalHandler(amountOfCoal) {
-        this.props.buyAndSellHandler(0, amountOfCoal, 0, 0, this.props.level);
+        this.props.buyAndSellHandler(0, amountOfCoal, 0, 0, this.props.level, false);
     }
 
     sellIronOreHandler(amountOfIronOre) {
-        this.props.buyAndSellHandler(0, 0, amountOfIronOre, 0, this.props.level);
+        this.props.buyAndSellHandler(0, 0, amountOfIronOre, 0, this.props.level, false);
     }
 
     buyWorkerHandler(amountOfMoney) {
-        this.props.buyAndSellHandler(0, 0, 0, amountOfMoney * this.props.resourcesSellPrice.workerPerMoney, this.props.level);
+        this.props.buyAndSellHandler(0, 0, 0, amountOfMoney * this.props.resourcesSellPrice.workerPerMoney, this.props.level, false);
     }
 
 }

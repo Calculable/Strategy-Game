@@ -61,19 +61,19 @@ class ArmyCenterDialog extends React.Component {
     }
 
     levelUp() {
-        this.props.buyAndSellHandler(0, 0, this.props.level + 1);
+        this.props.buyAndSellArmyHandler(0, 0, this.props.level + 1, true);
     }
 
     buyArcherHandler(amountOfMoney) {
-        this.props.buyAndSellArmyHandler(amountOfMoney * (1 / this.props.buyArmyPrice.archers), 0, 0, this.props.level);
+        this.props.buyAndSellArmyHandler(amountOfMoney * (1 / this.props.buyArmyPrice.archers), 0, 0, this.props.level, false);
     }
 
     buyBlockerHandler(amountOfMoney) {
-        this.props.buyAndSellArmyHandler(0, amountOfMoney * (1 / this.props.buyArmyPrice.blockers), 0, this.props.level);
+        this.props.buyAndSellArmyHandler(0, amountOfMoney * (1 / this.props.buyArmyPrice.blockers), 0, this.props.level, false);
     }
 
     buySowrdsmanHandler(amountOfMoney) {
-        this.props.buyAndSellArmyHandler(0, 0, amountOfMoney * (1 / this.props.buyArmyPrice.swordsman), this.props.level);
+        this.props.buyAndSellArmyHandler(0, 0, amountOfMoney * (1 / this.props.buyArmyPrice.swordsman), this.props.level, false);
     }
 }
 

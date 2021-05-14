@@ -20,18 +20,18 @@ export class UiController {
         setInterval(this.updateUI.bind(this), 60000);
     }
 
-    async updateWorkplaceHandler(workplace, amountOfWorkers, level) {
-        await this.apiService.updateWorkplace(workplace, amountOfWorkers, level);
+    async updateWorkplaceHandler(workplace, amountOfWorkers, level, shouldLevelUp) {
+        await this.apiService.updateWorkplace(workplace, amountOfWorkers, level, shouldLevelUp);
         this.updateUI();
     }
 
-    async buyAndSellHandler(amountWoodToSell = 0, amountCoalToSell = 0, amountIronOreToSell = 0, amountWorkersToBuy = 0, buildingLevel) {
-        await this.apiService.updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel);
+    async buyAndSellHandler(amountWoodToSell = 0, amountCoalToSell = 0, amountIronOreToSell = 0, amountWorkersToBuy = 0, buildingLevel, shouldLevelUp) {
+        await this.apiService.updateTownhall(amountWoodToSell, amountCoalToSell, amountIronOreToSell, amountWorkersToBuy, buildingLevel, shouldLevelUp);
         this.updateUI();
     }
 
-    async buyAndSellArmyHandler(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel) {
-        await this.apiService.updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel);
+    async buyAndSellArmyHandler(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel, shouldLevelUp) {
+        await this.apiService.updateArmyCenter(amountArchersToBuy, amountBlockersToBuy, amountSwordsmanToBuy, buildingLevel, shouldLevelUp);
         this.updateUI();
     }
 

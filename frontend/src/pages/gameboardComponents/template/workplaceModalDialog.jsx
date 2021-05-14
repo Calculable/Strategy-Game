@@ -60,11 +60,11 @@ class WorkplaceModalDialog extends React.Component {
     };
 
     levelUp() {
-        this.props.updateWorkplaceHandler(this.props.shortName, this.props.workers, this.props.level + 1);
+        this.props.updateWorkplaceHandler(this.props.shortName, this.props.workers, this.props.level + 1, true);
     }
 
     assignWorkers() {
-        this.props.updateWorkplaceHandler(this.props.shortName, parseInt(this.state.assignedWorkers), this.props.level);
+        this.props.updateWorkplaceHandler(this.props.shortName, parseInt(this.state.assignedWorkers), this.props.level, false);
     }
 }
 
