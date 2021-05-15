@@ -17,6 +17,8 @@ services:
       interval: 5s
       timeout: 30s
       retries: 20
+    networks: 
+      - backend
 
   service1:
     image: myservice
@@ -25,20 +27,24 @@ services:
     container_name: service1
     command: python manage.py runserver 0.0.0.0:80
     ports:
-      - 8090:80
+      - 80
     depends_on:
       postgres:
         condition: service_healthy
+    networks: 
+      - backend
 
   service2:
     image: myservice
     container_name: service2
     command: python manage.py runserver 0.0.0.0:80
     ports:
-      - 8091:80
+      - 80
     depends_on:
       postgres:
         condition: service_healthy
+    networks: 
+      - backend
 
   mygration:
     image: myservice
@@ -47,6 +53,8 @@ services:
       - postgres
       - service1
       - service2
+    networks: 
+      - backend
 
   frontend:
     build: 
@@ -58,6 +66,8 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - PATH=/app/node_modules/.bin:$PATH
+    networks: 
+      - frontend
 
   traefik:
     image: traefik:v2.4
@@ -71,13 +81,16 @@ services:
       - service1
       - service2
       - frontend
+    networks: 
+      - backend
+      - frontend
 
 volumes:
   pg_data:
 
 networks:
   backend:
-    internal: false #ToDo: change to true later
+    internal: true #ToDo: change to true later
   frontend:
     internal: false
 
