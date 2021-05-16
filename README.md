@@ -1,17 +1,15 @@
 # Strategy Game
 
 ## About
-This README-File contains the documentation and architecutral decision record for the "strategy game"-project. This project was build for the challenge-task in the module "distributed systems" at Fachhochschule OST.
-(Documentation and Architectural Decision Record)
+This README-File contains the documentation and architectural decision record for the "strategy game"-project. This project was built for the challenge-task in the module "distributed systems" at Fachhochschule OST.
 
-## Arcitecture Overview
+## Architecture Overview
 ![topology](topology.png)
 ## Loadbalancer
-As an loadbalancer for the application we decided to use Traefik. We decided to use traefik due to the fact, that it is very well documented and presented in the course. Traefik is designed to be used with virtualisation technologies and is open source.
+As a loadbalancer for the application we decided to use Traefik. We decided to use traefik due to the fact, that it is very well documented and presented in the course. Traefik is designed to be used with virtualisation technologies and is open source.
 
 ## Backend
-Our goal with this assignment was to learn new technologies. Therefore we decided to use Django. Django is a very powerfull web framework for python. We had some previous experences with python but barely any with Django. We decided, that we whant to implement our REST service with Django.
-
+Our goal with this assignment was to learn new technologies. Therefore we decided to use Django. Django is a very powerful web framework for python. We had some previous experiences with python but barely any with Django. We decided, that we want to implement our REST service with Django.
 
 ### Login and JWT Tokens
 
@@ -51,7 +49,7 @@ For all the requests where the client has to be authenticated, it will send the 
 
 ### React Technology Stack
 
-To write our frontend servce we decided to use React. React is the most popular frontend framework and provides therefore a lot of great documentaton. React was another new technology to us. We had previous experiences with javascript and npm but we have never used React before this assignment.
+To write our frontend service we decided to use React. React is the most popular frontend framework and therefore provides a lot of great documentation. React was another new technology to us. We had previous experiences with javascript and npm but we have never used React before this assignment.
 
 
 The frontend uses the following other technologies:
@@ -103,7 +101,7 @@ To start Test-Runner:
 
 `npm test`
 
-Afterwards, press a to run all the tests
+Afterwards, press "a" to run all the tests.
 
 ![Test-Output](frontend/documentation/tests.png)
 
@@ -116,11 +114,11 @@ The User Interface is built with several nested React Components:
 (Some Components are not shown in this diagram to reduce complexity)
 
 ## Database
-To store the data we use a PostgreSQl database. PostgreSQL is used due to the fact, that we can make great use of a ralational database as shown in the digram below. Our database is generated from our python backend code.
+To store the data we use a PostgreSQL database. PostgreSQL is used due to the fact, that we can make great use of a ralational database as shown in the digram below. Our database is generated from our python backend code.
 
 ![database](database.png)
 
-## Dockecompose
+## Dockercompose
 ### Run docker-compose
 Dockercompose can be started with the following command. This command runs and builds the containers. Adding the -d parameter to the command will start the containers in the background (no console log).
 ```
@@ -140,10 +138,10 @@ docker-compose up --build
 
 ### Django
 - Listening to port 80 for Docker container
-- containerss are only reachable through traefik
+- Containers are only reachable through Traefik
 
 ### Traefik
-Traefik is running as a loadbalancer for the django containers. Traefic is listens to all traffic on port 80 (http).
+Traefik is running as a loadbalancer for the django containers. Traefic is listening to all traffic on port 80 (http).
 
 ## Stop docker-compose
 ```
@@ -151,16 +149,16 @@ docker-compose stop
 ```
 
 ## Compleatly cleaning docker
-To remove all previously generated containers to start fresh enter:
+To remove all previously generated containers to start fresh, enter:
 ```
 docker system prune --all
 ```
 ### Remove volume
-to see all volumes:
+To see all volumes:
 ```
 docker volume ls
 ```
-to remove strategy game volume:
+To remove strategy game volume:
 ```
 docker rm postgres
 docker volume rm ds1-strategygame_pg_data
@@ -178,23 +176,23 @@ docker volume rm ds1-strategygame_pg_data
 
 ### Client-Side Rendering
 
-We decided to use React for our Client-Side rendering, mainly because it allowed us to distribute the work between the team-members easier. That way we had to excactly define our API-Endpoints and how the Backend and the Frontend should Communicate.
+We decided to use React for our Client-Side rendering, mainly because it allowed us to distribute the work between the team-members easier. That way we had to excactly define our API-Endpoints and how the Backend and the Frontend should communicate.
 
 ### Redundance
 
-Looking at the code in the frontend there seems to be a lot of redundance. We decided not to represent our different types of "buildings" in a generic way (for example we have a database table for each type of building instad of a generic table "building"). For now the functionality for the different types of building is more or less the same which brings some redundance into the code. The reason why we accepted some redundancy instead of introducing a new abstraction layer was because we think it might be possible that each type of building will get more indidivual behaviour if the game was developed further. 
+Looking at the code in the frontend there seems to be a lot of redundancy. We decided not to represent our different types of "buildings" in a generic way (for example we have a database table for each type of building instad of a generic table "building"). For now the functionality for the different types of building is more or less the same which brings some redundancy into the code. The reason why we accepted some redundancy instead of introducing a new abstraction layer was because we thought it might be possible that each type of building will get more indidivual behaviour if the game was developed further. 
 
 ### Common UI-Components
 
-We used a React-"Layout" to define common components that should be visible on more than one page (mainly for the navbar). The alternative would have been to copy-paste the common components to each page where they are needed. We choose the React-Layout to reduce redundancy, accpeting that the code became a little bit mor compex.
+We used a React-"Layout" to define common components that should be visible on more than one page (mainly for the navbar). The alternative would have been to copy-paste the common components to each page where they are needed. We choose the React-Layout to reduce redundancy, accepting that the code became a little bit more complex.
 
 ### Polling vs. Websockets
 
-The ressources of a user are dependent on the time so we have to refresh the ui every now and then. We could have used Sockets (for example with socket.io) so the server could inform the client about changes. We evaluated socket.io but decided against it because we think it would introduce a lot of complexity into our code especially because we use multiple instances of our service and a load balancer which makes it even harder to maintain an persitant connection between the server and the client (we wanted to have stateless services). Instead we decided that the client (frontend) polls the server every 10 seconds. This solution has the disadvantage that it is not very performant because the server has to do the same calculation over and over again when sometimes there is not even a new result. This solution would also not scale very well if there were many users playing at the same time but it sould work fine for our use-case. Because we use React, the frontend is only repainted if there is a change in the data.
+The ressources of a user are dependant on the time so we have to refresh the UI every now and then. We could have used Sockets (for example with socket.io) so the server could inform the client about changes. We evaluated socket.io but decided against it because we think it would introduce a lot of complexity into our code especially because we use multiple instances of our service and a load balancer which makes it even harder to maintain an persistent connection between the server and the client (we wanted to have stateless services). Instead we decided that the client (frontend) polls the server every 10 seconds. This solution has the disadvantage that it is not very performant because the server has to do the same calculation over and over again when sometimes there is not even a new result. This solution would also not scale very well if there were many users playing at the same time but it sould work fine for our use-case. Because we use React, the frontend is only repainted if there is a change in the data.
 
 ### Bootstrap Grid System vs. CSS Grid
 
-We display the types of buildings in a grid. As we already use Bootstrap we could have used the Boostrap Grid System to display the responsive grid but we decided to use the build-in CSS grid to be too more independant from bootstrap and because we thought that CSS Grid was easier to use for our use-case. 
+We displayed the types of buildings in a grid. As we already use Bootstrap we could have used the Boostrap Grid System to display the responsive grid but we decided to use the built-in CSS grid to be more independant from bootstrap and because we thought that CSS Grid was easier to use for our use-case. 
 
 ### CSS Normalize vs. CSS Reset
 
