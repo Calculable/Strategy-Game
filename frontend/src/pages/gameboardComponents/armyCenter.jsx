@@ -43,15 +43,15 @@ class ArmyCenterDialog extends React.Component {
 
             <div>
                 <ModalDialogTemplate id={ARMY_CENTER_MODAL} title="Army Center">
-                    <TradeOption titleSell={"Money"} titleGet={"Archers"} maxAmount={this.props.resources.money}
+                    <TradeOption titleSell={"Gold"} titleGet={"Archers"} maxAmount={this.props.resources.money}
                                  sellPrice={1 / this.props.buyArmyPrice.archers} selectedAmount="0"
                                  sellHandler={this.buyArcherHandler.bind(this)}
                                  step={this.props.buyArmyPrice.archers}></TradeOption>
-                    <TradeOption titleSell={"Money"} titleGet={"Blockers"} maxAmount={this.props.resources.money}
+                    <TradeOption titleSell={"Gold"} titleGet={"Blockers"} maxAmount={this.props.resources.money}
                                  sellPrice={1 / this.props.buyArmyPrice.blockers} selectedAmount="0"
                                  sellHandler={this.buyBlockerHandler.bind(this)}
                                  step={this.props.buyArmyPrice.blockers}></TradeOption>
-                    <TradeOption titleSell={"Money"} titleGet={"Swordsman"} maxAmount={this.props.resources.money}
+                    <TradeOption titleSell={"Gold"} titleGet={"Swordsman"} maxAmount={this.props.resources.money}
                                  sellPrice={1 / this.props.buyArmyPrice.swordsman} selectedAmount="0"
                                  sellHandler={this.buySowrdsmanHandler.bind(this)}
                                  step={this.props.buyArmyPrice.swordsman}></TradeOption>
