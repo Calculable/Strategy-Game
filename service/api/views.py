@@ -51,7 +51,7 @@ def mineRequests(request):
                 if currentMine.amountDedicatedWorkers > request.data['amountDedicatedWorkers']:
                     currentTownhall.amountWorkersFree = currentTownhall.amountWorkersFree + currentMine.amountDedicatedWorkers - request.data['amountDedicatedWorkers']
                 else:
-                    currentTownhall.amountWorkersFree = currentTownhall.amountWorkersFree - request.data['amountDedicatedWorkers'] - currentMine.amountDedicatedWorkers
+                    currentTownhall.amountWorkersFree = currentTownhall.amountWorkersFree - (request.data['amountDedicatedWorkers'] - currentMine.amountDedicatedWorkers)
             
             currentTownhall.save()
 
@@ -101,7 +101,7 @@ def woodcuttersRequests(request):
                 if currentWootcutter.amountDedicatedWorkers > request.data['amountDedicatedWorkers']:
                     currentTownhall.amountWorkersFree = currentTownhall.amountWorkersFree + currentWootcutter.amountDedicatedWorkers - request.data['amountDedicatedWorkers']
                 else:
-                    currentTownhall.amountWorkersFree = currentTownhall.amountWorkersFree - request.data['amountDedicatedWorkers'] - currentWootcutter.amountDedicatedWorkers
+                    currentTownhall.amountWorkersFree = currentTownhall.amountWorkersFree - (request.data['amountDedicatedWorkers'] - currentWootcutter.amountDedicatedWorkers)
             
             currentTownhall.save()
 
