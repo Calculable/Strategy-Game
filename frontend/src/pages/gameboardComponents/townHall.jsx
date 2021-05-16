@@ -52,13 +52,13 @@ class TownHallDialog extends React.Component {
                     <LevelUpgrader level={this.props.level} levelUpCost={this.props.levelUpCost}
                                    money={this.props.resources.money}
                                    levelUpHandler={this.levelUp.bind(this)}></LevelUpgrader>
-                    <TradeOption titleSell={"Wood"} titleGet={"Money"} maxAmount={this.props.resources.amountWood}
+                    <TradeOption titleSell={"Wood"} titleGet={"Gold"} maxAmount={this.props.resources.amountWood}
                                  sellPrice={this.props.resourcesSellPrice.wood} selectedAmount="0"
                                  sellHandler={this.sellWoodHandler.bind(this)} step={1}></TradeOption>
-                    <TradeOption titleSell={"Coal"} titleGet={"Money"} maxAmount={this.props.resources.amountCoal}
+                    <TradeOption titleSell={"Coal"} titleGet={"Gold"} maxAmount={this.props.resources.amountCoal}
                                  sellPrice={this.props.resourcesSellPrice.coal} selectedAmount="0"
                                  sellHandler={this.sellCoalHandler.bind(this)} step={1}></TradeOption>
-                    <TradeOption titleSell={"Iron Ore"} titleGet={"Money"}
+                    <TradeOption titleSell={"Iron Ore"} titleGet={"Gold"}
                                  maxAmount={this.props.resources.amountIronOre}
                                  sellPrice={this.props.resourcesSellPrice.ironOre} selectedAmount="0"
                                  sellHandler={this.sellIronOreHandler.bind(this)} step={1}></TradeOption>

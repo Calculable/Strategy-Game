@@ -27,7 +27,7 @@ class LevelUpgrader extends React.Component {
                 <br/>
 
                 {(this.props.levelUpCost < this.props.money) &&
-                <span className="badge bg-danger mr-1">- {this.props.levelUpCost}x Money</span>}
+                <span className="badge bg-danger mr-1">- {this.props.levelUpCost}x Gold</span>}
             </div>
         );
     }
