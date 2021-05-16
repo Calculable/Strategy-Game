@@ -62,7 +62,7 @@ class TownHallDialog extends React.Component {
                                  maxAmount={this.props.resources.amountIronOre}
                                  sellPrice={this.props.resourcesSellPrice.ironOre} selectedAmount="0"
                                  sellHandler={this.sellIronOreHandler.bind(this)} step={1}></TradeOption>
-                    <TradeOption titleSell={"Money"} titleGet={"Workers"} maxAmount={this.props.resources.money}
+                    <TradeOption titleSell={"Gold"} titleGet={"Workers"} maxAmount={this.props.resources.money}
                                  sellPrice={this.props.resourcesSellPrice.workerPerMoney} selectedAmount="0"
                                  sellHandler={this.buyWorkerHandler.bind(this)}
                                  step={1 / this.props.resourcesSellPrice.workerPerMoney}></TradeOption>

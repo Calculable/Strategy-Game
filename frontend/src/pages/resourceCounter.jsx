@@ -9,7 +9,7 @@ class ResourceCounter extends React.Component {
                         className="badge bg-info">{this.props.resources.amountCoal}</span>
                     <span className={"resource-item"}> Iron Ore: </span><span
                         className="badge bg-info">{this.props.resources.amountIronOre}</span>
-                    <span className={"resource-item"}> Money: </span><span
+                    <span className={"resource-item"}> Gold: </span><span
                         className="badge bg-info">{this.props.resources.money}</span>
                     <br/><br/>
                     Free Workers: <span className="badge bg-light text-dark">{this.props.resources.workers}</span>
