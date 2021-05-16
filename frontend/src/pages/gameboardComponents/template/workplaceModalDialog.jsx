@@ -41,11 +41,11 @@ class WorkplaceModalDialog extends React.Component {
                 <div>
                     <h6 className="mt-3">Current Performance</h6>
                     {(this.props.woodPerMinute > 0) &&
-                    <span className="badge bg-info mr-1 resource-item">+ {this.props.woodPerMinute}x Wood</span>}
+                    <span className="badge bg-info mr-1 resource-item">+ {Math.round(this.props.woodPerMinute * 100) / 100}x Wood</span>}
                     {(this.props.coalPerMinute > 0) &&
-                    <span className="badge bg-info mr-1 resource-item">+ {this.props.coalPerMinute}x Coal</span>}
+                    <span className="badge bg-info mr-1 resource-item">+ {Math.round(this.props.coalPerMinute * 100) / 100}x Coal</span>}
                     {(this.props.ironOrePerMinute > 0) &&
-                    <span className="badge bg-info mr-1 resource-item">+ {this.props.ironOrePerMinute}x Iron Ore</span>}
+                    <span className="badge bg-info mr-1 resource-item">+ {Math.round(this.props.ironOrePerMinute * 100) / 100}x Iron Ore</span>}
                     <span> per minute </span>
                 </div>
                 }

@@ -14,6 +14,8 @@ class TradeOption extends React.Component {
                 <label>
                     <h6>Trade <span>{this.props.titleSell} for {this.props.titleGet}</span></h6>
 
+                    <span>Price: {1/this.props.sellPrice*this.props.sellPrice} {this.props.titleGet} = {1/this.props.sellPrice} {this.props.titleSell} </span>
+
                     <input type="number" min="0" className="form-control" step={this.props.step}
                            value={this.state.selectedAmount}
                            onChange={this.handleAmountChange.bind(this)}/>
